@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EPDC</title>
+    <script src="https://kit.fontawesome.com/109a493327.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <style>
+        .bold-line {
+            border: none;
+            height: 2px;
+            background-color: black;
+            margin: 20px 0;
+        }
+        .row {
+            display: flex;
+        }
+        .btn-primary{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        label{
+            font-weight: bold;
+        }
+        img {
+            height: 120px;
+            /* width: 40%; */
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{header :: header}"></div>
+
+<div class="container mt-4 row">
+    <!-- Left Side: Input Forms -->
+    <div class="col-md-6">
+        <h3>Latest Gallery Pics</h3>
+
+        <!-- Single Form for All Updates -->
+        <form id="updateForm" method="post" enctype="multipart/form-data">
+            <!-- 1st Image -->
+            <label class="form-label">1st Image</label>
+            <input type="file" class="form-control" name="image1" accept="image/*" />
+            <button type="button" onclick="submitForm('image1')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 2nd Image -->
+            <label class="form-label">2nd Image</label>
+            <input type="file" class="form-control" name="image2" accept="image/*" />
+            <button type="button" onclick="submitForm('image2')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 3rd Image -->
+            <label class="form-label">3rd Image</label>
+            <input type="file" class="form-control" name="image3" accept="image/*" />
+            <button type="button" onclick="submitForm('image3')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 4th Image -->
+            <label class="form-label">4th Image</label>
+            <input type="file" class="form-control" name="image4" accept="image/*" />
+            <button type="button" onclick="submitForm('image4')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 5th Image -->
+            <label class="form-label">5th Image</label>
+            <input type="file" class="form-control" name="image5" accept="image/*" />
+            <button type="button" onclick="submitForm('image5')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 6th Image -->
+            <label class="form-label">6th Image</label>
+            <input type="file" class="form-control" name="image6" accept="image/*" />
+            <button type="button" onclick="submitForm('image6')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 7th Image -->
+            <label class="form-label">7th Image</label>
+            <input type="file" class="form-control" name="image7" accept="image/*" />
+            <button type="button" onclick="submitForm('image7')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 8th Image -->
+            <label class="form-label">8th Image</label>
+            <input type="file" class="form-control" name="image8" accept="image/*" />
+            <button type="button" onclick="submitForm('image8')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 9th Image -->
+            <label class="form-label">9th Image</label>
+            <input type="file" class="form-control" name="image9" accept="image/*" />
+            <button type="button" onclick="submitForm('image9')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 10th Image -->
+            <label class="form-label">10th Image</label>
+            <input type="file" class="form-control" name="image10" accept="image/*" />
+            <button type="button" onclick="submitForm('image10')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 11th Image -->
+            <label class="form-label">11th Image</label>
+            <input type="file" class="form-control" name="image11" accept="image/*" />
+            <button type="button" onclick="submitForm('image11')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 12th Image -->
+            <label class="form-label">12th Image</label>
+            <input type="file" class="form-control" name="image12" accept="image/*" />
+            <button type="button" onclick="submitForm('image12')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 13th Image -->
+            <label class="form-label">13th Image</label>
+            <input type="file" class="form-control" name="image13" accept="image/*" />
+            <button type="button" onclick="submitForm('image13')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 14th Image -->
+            <label class="form-label">14th Image</label>
+            <input type="file" class="form-control" name="image14" accept="image/*" />
+            <button type="button" onclick="submitForm('image14')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <!-- 15th Image -->
+            <label class="form-label">15th Image</label>
+            <input type="file" class="form-control" name="image15" accept="image/*" />
+            <button type="button" onclick="submitForm('image15')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line" /> -->
+        </form>
+    </div>
+
+    <!-- Right Side: Display Data -->
+    <div class="col-md-6">
+        <h3>Latest Gallery Pics</h3>
+
+        <!-- 1st Image -->
+        <div>
+            <strong>1st Image:</strong>
+            <img th:if="${fourthSection.image1}" th:src="@{${'/uploads/' + fourthSection.image1}}" alt="1st Image" width="100" />
+            <p th:unless="${fourthSection.image1}">No 1st image available</p>
+        </div>
+        <hr />
+
+        <!-- 2nd Image -->
+        <div>
+            <strong>2nd Image:</strong>
+            <img th:if="${fourthSection.image2}" th:src="@{${'/uploads/' + fourthSection.image2}}" alt="2nd Image" width="100" />
+            <p th:unless="${fourthSection.image2}">No 2nd image available</p>
+        </div>
+        <hr />
+
+        <!-- 3rd Image -->
+        <div>
+            <strong>3rd Image:</strong>
+            <img th:if="${fourthSection.image3}" th:src="@{${'/uploads/' + fourthSection.image3}}" alt="3rd Image" width="100" />
+            <p th:unless="${fourthSection.image3}">No 3rd image available</p>
+        </div>
+        <hr />
+
+        <!-- 4th Image -->
+        <div>
+            <strong>4th Image:</strong>
+            <img th:if="${fourthSection.image4}" th:src="@{${'/uploads/' + fourthSection.image4}}" alt="4th Image" width="100" />
+            <p th:unless="${fourthSection.image4}">No 4th image available</p>
+        </div>
+        <hr />
+
+        <!-- 5th Image -->
+        <div>
+            <strong>5th Image:</strong>
+            <img th:if="${fourthSection.image5}" th:src="@{${'/uploads/' + fourthSection.image5}}" alt="5th Image" width="100" />
+            <p th:unless="${fourthSection.image5}">No 5th image available</p>
+        </div>
+        <hr />
+
+        <!-- 6th Image -->
+        <div>
+            <strong>6th Image:</strong>
+            <img th:if="${fourthSection.image6}" th:src="@{${'/uploads/' + fourthSection.image6}}" alt="6th Image" width="100" />
+            <p th:unless="${fourthSection.image6}">No 6th image available</p>
+        </div>
+        <hr />
+
+        <!-- 7th Image -->
+        <div>
+            <strong>7th Image:</strong>
+            <img th:if="${fourthSection.image7}" th:src="@{${'/uploads/' + fourthSection.image7}}" alt="7th Image" width="100" />
+            <p th:unless="${fourthSection.image7}">No 7th image available</p>
+        </div>
+        <hr />
+
+        <!-- 8th Image -->
+        <div>
+            <strong>8th Image:</strong>
+            <img th:if="${fourthSection.image8}" th:src="@{${'/uploads/' + fourthSection.image8}}" alt="8th Image" width="100" />
+            <p th:unless="${fourthSection.image8}">No 8th image available</p>
+        </div>
+        <hr />
+
+        <!-- 9th Image -->
+        <div>
+            <strong>9th Image:</strong>
+            <img th:if="${fourthSection.image9}" th:src="@{${'/uploads/' + fourthSection.image9}}" alt="9th Image" width="100" />
+            <p th:unless="${fourthSection.image9}">No 9th image available</p>
+        </div>
+        <hr />
+
+        <!-- 10th Image -->
+        <div>
+            <strong>10th Image:</strong>
+            <img th:if="${fourthSection.image10}" th:src="@{${'/uploads/' + fourthSection.image10}}" alt="10th Image" width="100" />
+            <p th:unless="${fourthSection.image10}">No 10th image available</p>
+        </div>
+        <hr />
+
+        <!-- 11th Image -->
+        <div>
+            <strong>11th Image:</strong>
+            <img th:if="${fourthSection.image11}" th:src="@{${'/uploads/' + fourthSection.image11}}" alt="11th Image" width="100" />
+            <p th:unless="${fourthSection.image11}">No 11th image available</p>
+        </div>
+        <hr />
+
+        <!-- 12th Image -->
+        <div>
+            <strong>12th Image:</strong>
+            <img th:if="${fourthSection.image12}" th:src="@{${'/uploads/' + fourthSection.image12}}" alt="12th Image" width="100" />
+            <p th:unless="${fourthSection.image12}">No 12th image available</p>
+        </div>
+        <hr />
+
+        <!-- 13th Image -->
+        <div>
+            <strong>13th Image:</strong>
+            <img th:if="${fourthSection.image13}" th:src="@{${'/uploads/' + fourthSection.image13}}" alt="13th Image" width="100" />
+            <p th:unless="${fourthSection.image13}">No 13th image available</p>
+        </div>
+        <hr />
+
+        <!-- 14th Image -->
+        <div>
+            <strong>14th Image:</strong>
+            <img th:if="${fourthSection.image14}" th:src="@{${'/uploads/' + fourthSection.image14}}" alt="14th Image" width="100" />
+            <p th:unless="${fourthSection.image14}">No 14th image available</p>
+        </div>
+        <hr />
+
+        <!-- 15th Image -->
+        <div>
+            <strong>15th Image:</strong>
+            <img th:if="${fourthSection.image15}" th:src="@{${'/uploads/' + fourthSection.image15}}" alt="15th Image" width="100" />
+            <p th:unless="${fourthSection.image15}">No 15th image available</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function submitForm(fieldName) {
+        const form = document.getElementById('updateForm');
+        const formData = new FormData(form);
+
+        // Check if the field has a value
+        const fieldValue = formData.get(fieldName);
+        if (!fieldValue || (fieldValue instanceof File && fieldValue.size === 0)) {
+            alert('Please select a file before updating.');
+            return; // Stop execution if the field is empty
+        }
+
+        // Only include the field being updated
+        const data = new FormData();
+        data.append(fieldName, fieldValue);
+
+        // Submit the form data to the backend
+        fetch('/updateFourthSection', {
+            method: 'POST',
+            body: data,
+        }).then(response => {
+            if (response.ok) {
+                alert('Updated successfully!');
+                location.reload(); // Reload the page to reflect changes
+            } else {
+                alert('Failed to update.');
+            }
+        });
+    }
+</script>
+</body>
+</html>

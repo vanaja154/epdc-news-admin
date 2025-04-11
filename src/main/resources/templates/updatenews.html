@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EPDC</title>
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="update.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Internal CSS -->
+    <style>
+      /* Ensure the display container looks good */
+      #display-container {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+
+      #displayimg {
+        max-width: 100%;
+        height: auto;
+        margin-top: 10px;
+        object-fit: contain;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .row {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div th:replace="~{header :: header}"></div>
+
+    <div class="container mt-3">
+      <div class="row">
+        <!-- Form Section -->
+        <div class="col-lg-6 col-md-12 mb-3">
+          <form
+            id="dynamicForm"
+            enctype="multipart/form-data"
+            class="p-4 bg-light rounded shadow-sm"
+          >
+            <h3 class="main-head text-left my-3">Update News</h3>
+
+            <label for="category" class="form-label">Select Category</label>
+            <select
+              class="form-control mb-3"
+              name="category"
+              required
+              id="category"
+            >
+              <option value="Andhrapradesh">Andhra Pradesh</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Movies">Movies</option>
+              <option value="Environment">Environment</option>
+              <option value="Sports">Sports</option>
+              <option value="Business">Business</option>
+              <option value="Family">Family</option>
+              <option value="Prediction">Prediction</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
+            </select>
+
+            <label for="subsec" class="form-label">Select Section</label>
+            <select id="subsec" class="form-control mb-3" name="subcategory">
+              <option>Select Sub Category</option>
+            </select>
+
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="Title"
+                name="Title"
+                placeholder="Enter Title"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="Text"
+                name="Text"
+                placeholder="Enter Text"
+                required
+              />
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="file"
+                accept="image/*"
+                class="form-control"
+                id="Image"
+                name="image"
+                required
+              />
+            </div>
+
+
+            <!-- Advertisement Section -->
+            <!-- <div class="mb-3">
+              <label class="form-label">Advertisement Image</label>
+              <input type="file" class="form-control" name="advertisementImage" accept="image/*" required />
+          </div>
+          <div class="mb-3">
+              <label class="form-label">Advertisement Link</label>
+              <input type="text" class="form-control" name="advertisementLink" required />
+          </div> -->
+
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+          </form>
+        </div>
+
+        <!-- Display Section -->
+        <div class="col-lg-6 col-md-12 mb-3">
+          <div id="display-container" hidden>
+            <p id="displaytitle" class="fw-bold">Title will appear here</p>
+            <p id="displaytext">Text will appear here</p>
+            <img id="displayimg" alt="Image preview" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Dynamically populate subcategories
+      [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+      ].forEach((e, index) => {
+        document.getElementById("subsec").innerHTML += `<option value="sidebar${
+          index + 1
+        }">News ${index + 1}</option>`;
+      });
+
+      async function handleGetSubCategory() {
+        const selectedCategory = document.getElementById("category").value;
+        const selectedSubCategory = document.getElementById("subsec").value;
+
+        // Ensure both category and subcategory are selected
+        if (
+          !selectedCategory ||
+          selectedSubCategory === "Select Sub Category"
+        ) {
+          document.getElementById("display-container").hidden = true; // Hide the container
+          return;
+        }
+
+        try {
+          const response = await fetch(
+            `/get-content?category=${selectedCategory}&subcategory=${selectedSubCategory}`
+          );
+          const subcategories = await response.json();
+
+          if (subcategories.error) {
+            // If there's an error, hide the container
+            document.getElementById("display-container").hidden = true;
+            console.error(subcategories.error);
+            return;
+          }
+
+          // Update the display fields with the fetched data
+          document.getElementById("displaytitle").textContent =
+            subcategories.title;
+          document.getElementById("displaytext").textContent =
+            subcategories.text;
+          document.getElementById(
+            "displayimg"
+          ).src = `/uploads/${subcategories.image}`;
+
+          // Show the container
+          document.getElementById("display-container").hidden = false;
+        } catch (error) {
+          console.error("Error fetching subcategory data:", error);
+          document.getElementById("display-container").hidden = true; // Hide the container on error
+        }
+      }
+
+      document
+        .getElementById("subsec")
+        .addEventListener("change", handleGetSubCategory);
+      document
+        .getElementById("category")
+        .addEventListener("change", handleGetSubCategory);
+
+      // Handle form submission
+      document
+        .getElementById("dynamicForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Create a FormData object from the form
+          const formData = new FormData(event.target);
+
+          // Log the form values to the console for debugging
+          console.log("Form Data:");
+          for (const [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
+          }
+
+          // Send the form data to the server using fetch
+          fetch("/update-content", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              return response.text();
+            })
+            .then((data) => {
+              console.log("Server Response:", data);
+              alert(data); // Show a success or error message to the user
+
+              // Call handleGetSubCategory to fetch and display the updated data
+              handleGetSubCategory();
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("An error occurred while submitting the form.");
+            });
+        });
+    </script>
+  </body>
+</html>

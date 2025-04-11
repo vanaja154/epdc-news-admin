@@ -1,0 +1,959 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EPDC</title>
+    <link rel="stylesheet" href="header.css" />
+    <script
+      src="https://kit.fontawesome.com/109a493327.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+
+    <style>
+      .disabled-form {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .vertical-line {
+        border-left: 2px solid #ddd;
+        height: 1117%;
+        position: absolute;
+        left: 40%;
+        top: 49px;
+      }
+      .bold-line {
+    border: none;
+    height: 2px;
+    background-color: black;
+    margin: 20px 0;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div th:replace="~{header :: header}"></div>
+
+    <div class="container mt-4 row">
+      <!-- First Section Form -->
+      <form
+        class="col-md-6"
+        action="updateCombinedContent"
+        method="post"
+        enctype="multipart/form-data">
+        <h3>First Section</h3>
+
+        <!-- Category Dropdown -->
+        <div class="mb-3">
+          <label class="form-label">Select Category</label>
+          <select class="form-control" name="category" required>
+            <!-- <option value="/">Home</option> -->
+            <option value="Andhrapradesh">Andhra Pradesh</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Movies">Movies</option>
+            <option value="Environment">Environment</option>
+            <option value="Sports">Sports</option>
+            <option value="Business">Business</option>
+            <option value="Family">Family</option>
+            <option value="Prediction">Prediction</option>
+            <option value="Health">Health</option>
+            <option value="Education">Education</option>
+
+            <!-- Add more categories as needed -->
+          </select>
+        </div>
+
+        <!-- Left Section 1 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 1</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar1Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar1Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 1</label>
+          <textarea
+            class="form-control"
+            name="sidebar1Text"
+            required
+          ></textarea>
+        </div>
+
+
+        <hr class="bold-line">
+
+        <!-- Left Section 2 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 2</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar2Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar2Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 2</label>
+          <textarea
+            class="form-control"
+            name="sidebar2Text"
+            required
+          ></textarea>
+        </div>
+
+        <hr class="bold-line">
+         <!-- Left Section 3 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 3</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar3Image"
+            accept="image/*"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar3Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 3</label>
+          <textarea class="form-control" name="sidebar3Text" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+        <!-- Left Section 4 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 4</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar4Image"
+            accept="image/*"
+            required
+          />
+        </div>
+
+        <hr class="bold-line">
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 4</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar4Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 4</label>
+          <textarea
+            class="form-control"
+            name="sidebar4Text"
+            required
+          ></textarea>
+        </div>
+
+        <hr class="bold-line">
+        <!-- Left Section 5 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 5</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar5Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 5</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar5Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 5</label>
+          <textarea
+            class="form-control"
+            name="sidebar5Text"
+            required
+          ></textarea>
+        </div>
+
+        <hr class="bold-line">
+        <!-- Left Section 6 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 6</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar6Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 6</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar6Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 6</label>
+          <textarea
+            class="form-control"
+            name="sidebar6Text"
+            required
+          ></textarea>
+        </div>
+        <hr class="bold-line">
+
+        <!-- Left Section 7 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 7</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar7Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 7</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar7Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 7</label>
+          <textarea
+            class="form-control"
+            name="sidebar7Text"
+            required
+          ></textarea>
+        </div>
+
+        <hr class="bold-line">
+
+        <!-- Left Section 8 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 8</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar8Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 8</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar8Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 8</label>
+          <textarea
+            class="form-control"
+            name="sidebar8Text"
+            required
+          ></textarea>
+        </div>
+
+        <hr class="bold-line">
+
+        <!-- Left Section 9 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 9</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar9Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 9</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar9Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 9</label>
+          <textarea
+            class="form-control"
+            name="sidebar9Text"
+            required
+          ></textarea>
+        </div>
+        <hr class="bold-line">
+
+        <!-- Left Section 10 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 10</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar10Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 10</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar10Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 10</label>
+          <textarea
+            class="form-control"
+            name="sidebar10Text"
+            required
+          ></textarea>
+        </div>
+        <hr class="bold-line">
+
+        <!-- Left Section 1 to 10 (already provided) -->
+
+<!-- Left Section 11 to 20 -->
+<div class="mb-3">
+  <label class="form-label">Left Side Image 11</label>
+  <input type="file" class="form-control" name="sidebar11Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 11</label>
+  <input type="text" class="form-control" name="sidebar11Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 11</label>
+  <textarea class="form-control" name="sidebar11Text" required></textarea>
+</div>
+
+<hr class="bold-line">
+<div class="mb-3">
+  <label class="form-label">Left Side Image 12</label>
+  <input type="file" class="form-control" name="sidebar12Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 12</label>
+  <input type="text" class="form-control" name="sidebar12Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 12</label>
+  <textarea class="form-control" name="sidebar12Text" required></textarea>
+</div>
+
+<hr class="bold-line">
+
+<div class="mb-3">
+  <label class="form-label">Left Side Image 13</label>
+  <input type="file" class="form-control" name="sidebar13Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 13</label>
+  <input type="text" class="form-control" name="sidebar13Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 13</label>
+  <textarea class="form-control" name="sidebar13Text" required></textarea>
+</div>
+
+<hr class="bold-line">
+
+<div class="mb-3">
+  <label class="form-label">Left Side Image 14</label>
+  <input type="file" class="form-control" name="sidebar14Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 14</label>
+  <input type="text" class="form-control" name="sidebar14Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 14</label>
+  <textarea class="form-control" name="sidebar14Text" required></textarea>
+</div>
+
+
+<hr class="bold-line">
+
+<div class="mb-3">
+  <label class="form-label">Left Side Image 15</label>
+  <input type="file" class="form-control" name="sidebar15Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 15</label>
+  <input type="text" class="form-control" name="sidebar15Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 15</label>
+  <textarea class="form-control" name="sidebar15Text" required></textarea>
+</div>
+
+<hr class="bold-line">
+
+<div class="mb-3">
+  <label class="form-label">Left Side Image 16</label>
+  <input type="file" class="form-control" name="sidebar16Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 16</label>
+  <input type="text" class="form-control" name="sidebar16Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 16</label>
+  <textarea class="form-control" name="sidebar16Text" required></textarea>
+</div>
+
+
+<hr class="bold-line"> 
+
+<div class="mb-3">
+  <label class="form-label">Left Side Image 17</label>
+  <input type="file" class="form-control" name="sidebar17Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 17</label>
+  <input type="text" class="form-control" name="sidebar17Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 17</label>
+  <textarea class="form-control" name="sidebar17Text" required></textarea>
+</div>
+
+<hr class="bold-line">
+
+<div class="mb-3">
+  <label class="form-label">Left Side Image 18</label>
+  <input type="file" class="form-control" name="sidebar18Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 18</label>
+  <input type="text" class="form-control" name="sidebar18Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 18</label>
+  <textarea class="form-control" name="sidebar18Text" required></textarea>
+</div>
+
+<hr class="bold-line">
+
+<div class="mb-3">
+  <label class="form-label">Left Side Image 19</label>
+  <input type="file" class="form-control" name="sidebar19Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 19</label>
+  <input type="text" class="form-control" name="sidebar19Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 19</label>
+  <textarea class="form-control" name="sidebar19Text" required></textarea>
+</div>
+
+<hr class="bold-line">
+
+<div class="mb-3">
+  <label class="form-label">Left Side Image 20</label>
+  <input type="file" class="form-control" name="sidebar20Image" accept="image/*" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Title 20</label>
+  <input type="text" class="form-control" name="sidebar20Title" required />
+</div>
+<div class="mb-3">
+  <label class="form-label">Left Side Text 20</label>
+  <textarea class="form-control" name="sidebar20Text" required></textarea>
+</div>
+
+<hr class="bold-line">
+
+        <!-- Center Section 1 -->
+        <!-- <div class="mb-3">
+          <label class="form-label">Center Image 1</label>
+          <input
+            type="file"
+            class="form-control"
+            name="center1Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Center Title 1</label>
+          <input
+            type="text"
+            class="form-control"
+            name="center1Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Center Text 1</label>
+          <textarea class="form-control" name="center1Text" required></textarea>
+        </div> -->
+
+        <!-- Center Section 2 -->
+        <!-- <div class="mb-3">
+          <label class="form-label">Center Image 2</label>
+          <input
+            type="file"
+            class="form-control"
+            name="center2Image"
+            accept="image/*"
+            required
+          />
+        </div> -->
+        <!-- <div class="mb-3">
+          <label class="form-label">Center Title 2</label>
+          <input
+            type="text"
+            class="form-control"
+            name="center2Title"
+            required
+          />
+        </div> -->
+        <!-- <div class="mb-3">
+          <label class="form-label">Center Text 2</label>
+          <textarea class="form-control" name="center2Text" required></textarea>
+        </div> -->
+
+        <!-- Center Section 3 -->
+        <!-- <div class="mb-3">
+          <label class="form-label">Center Image 3</label>
+          <input
+            type="file"
+            class="form-control"
+            name="center3Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Center Title 3</label>
+          <input
+            type="text"
+            class="form-control"
+            name="center3Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Center Text 3</label>
+          <textarea class="form-control" name="center3Text" required></textarea>
+        </div> -->
+
+        <!-- Right Section -->
+        <div class="mb-3">
+          <label class="form-label">Right Image 1</label>
+          <input
+            type="file"
+            class="form-control"
+            name="rightImage1"
+            accept="image/*"
+            required
+          />
+        </div>
+        <hr class="bold-line">
+        <div class="mb-3">
+          <label class="form-label">Right Image 2</label>
+          <input
+            type="file"
+            class="form-control"
+            name="rightImage2"
+            accept="image/*"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <hr class="bold-line">
+      </form>
+       
+      <!-- <div class="vertical-line"></div> -->
+
+      <!-- Second Section Form -->
+      <form
+        class="col-md-6"
+        action="/updateCombinedContent"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <h3>Second Section</h3>
+
+        <!-- Category Dropdown -->
+        <div class="mb-3">
+          <label class="form-label">Select Category</label>
+          <select class="form-control" name="category" required>
+            <!-- <option value="/">Home</option> -->
+            <option value="Andhrapradesh">Andhra Pradesh</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Movies">Movies</option>
+            <option value="Environment">Environment</option>
+            <option value="Sports">Sports</option>
+            <option value="Business">Business</option>
+            <option value="Family">Family</option>
+            <option value="Prediction">Prediction</option>
+            <option value="Health">Health</option>
+            <option value="Education">Education</option>
+            <!-- Add more categories as needed -->
+          </select>
+        </div>
+
+        <!-- 1st Image -->
+        <div class="mb-3">
+          <label class="form-label">1st Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image1"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">1st Image Title</label>
+          <textarea class="form-control" name="title1" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">1st Image Text</label>
+          <textarea class="form-control" name="text1" required></textarea>
+        </div>
+        <hr class="bold-line">
+
+        <!-- 2nd Image -->
+        <div class="mb-3">
+          <label class="form-label">2nd Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image2"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">2nd Image Title</label>
+          <textarea class="form-control" name="title2" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">2nd Image Text</label>
+          <textarea class="form-control" name="text2" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+        <!-- 3rd Image -->
+        <div class="mb-3">
+          <label class="form-label">3rd Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image3"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">3rd Image Title</label>
+          <textarea class="form-control" name="title3" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">3rd Image Text</label>
+          <textarea class="form-control" name="text3" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+
+        <!-- 4th Image -->
+        <div class="mb-3">
+          <label class="form-label">4th Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image4"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">4th Image Title</label>
+          <textarea class="form-control" name="title4" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">4th Image Text</label>
+          <textarea class="form-control" name="text4" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+
+        <!-- 5th Image -->
+        <div class="mb-3">
+          <label class="form-label">5th Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image5"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">5th Image Title</label>
+          <textarea class="form-control" name="title5" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">5th Image Text</label>
+          <textarea class="form-control" name="text5" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+        <!-- 6th Image -->
+        <div class="mb-3">
+          <label class="form-label">6th Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image6"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">6th Image Title</label>
+          <textarea class="form-control" name="title6" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">6th Image Text</label>
+          <textarea class="form-control" name="text6" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+
+        <!-- 7th Image -->
+        <div class="mb-3">
+          <label class="form-label">7th Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image7"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">7th Image Title</label>
+          <textarea class="form-control" name="title7" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">7th Image Text</label>
+          <textarea class="form-control" name="text7" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+        <!-- 8th Image -->
+        <div class="mb-3">
+          <label class="form-label">8th Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image8"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">8th Image Title</label>
+          <textarea class="form-control" name="title8" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">8th Image Text</label>
+          <textarea class="form-control" name="text8" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+
+        <!-- 9th Image -->
+        <div class="mb-3">
+          <label class="form-label">9th Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image9"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">9th Image Title</label>
+          <textarea class="form-control" name="title9" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">9th Image Text</label>
+          <textarea class="form-control" name="text9" required></textarea>
+        </div>
+
+        <hr class="bold-line">
+
+        <!-- 10th Image -->
+        <div class="mb-3">
+          <label class="form-label">10th Image</label>
+          <input
+            type="file"
+            class="form-control"
+            name="image10"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">10th Image Title</label>
+          <textarea class="form-control" name="title10" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">10th Image Text</label>
+          <textarea class="form-control" name="text10" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        <hr class="bold-line">
+      </form>
+    </div>
+
+    <script>
+      // Get references to the forms and category dropdown
+      const firstForm = document.getElementById("firstForm");
+      const secondForm = document.getElementById("secondForm");
+      const categoryDropdown = document.getElementById("category");
+      const secondCategoryInput = document.getElementById("secondCategory");
+
+      // Disable the second form initially
+      secondForm.classList.add("disabled-form");
+
+      // Track the selected category
+      let selectedCategory = null;
+
+      // Handle first form submission
+      firstForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get the selected category
+        selectedCategory = categoryDropdown.value;
+
+        // Set the category in the second form and enable it
+        secondCategoryInput.value = selectedCategory;
+        secondForm.classList.remove("disabled-form");
+
+        // Disable the category dropdown
+        categoryDropdown.disabled = true;
+
+        // Submit the first form programmatically
+        fetch("updateCombinedContent", {
+          method: "POST",
+          body: new FormData(firstForm),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("First form submitted successfully!");
+            } else {
+              alert("Failed to submit the first form.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+
+      // Handle second form submission
+      secondForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Ensure the selected category matches the first form's category
+        if (secondCategoryInput.value !== selectedCategory) {
+          alert(
+            "Please complete the current category before selecting another."
+          );
+          return;
+        }
+
+        // Submit the second form programmatically
+        fetch("updateCombinedContent", {
+          method: "POST",
+          body: new FormData(secondForm),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Second form submitted successfully!");
+              // Reset the forms and re-enable the category dropdown
+              firstForm.reset();
+              secondForm.reset();
+              secondForm.classList.add("disabled-form");
+              categoryDropdown.disabled = false;
+              selectedCategory = null; // Reset the selected category
+            } else {
+              alert("Failed to submit the second form.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+    </script>
+  </body>
+</html>

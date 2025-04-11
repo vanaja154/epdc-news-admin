@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navigation</title>
+    <style></style>
+    <link rel="stylesheet" href="header.css" />
+  </head>
+
+  <body>
+    <div id="overlay" onclick="closeSidebar()"></div>
+    
+    <div class="mainheader">
+      <img src="/images/globe-removebg-preview.png" alt="EPDC Logo" />
+      <h1>Environment Protection And Development Council</h1>
+    
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search news by category..."
+          oninput="filterSuggestions()"
+        />
+        <button type="button" id="searchButton" onclick="redirectToCategory()">
+          <i class="fas fa-search"></i>
+        </button>
+        <!-- Dropdown Suggestions -->
+        <div class="dropdown-suggestions" id="suggestionsDropdown">
+          <ul id="suggestionsList"></ul>
+        </div>
+      </div>
+    
+      <script>
+        // Define searchable links (navigation links + categories)
+        const searchableLinks = [
+          { name: "MainNews", link: "/" },
+          { name: "LatestNews", link: "second" },
+          { name: "FeaturedNews", link: "third" },
+          { name: "Gallery", link: "fourth" },
+          { name: "News", link: "newupdate" },
+          { name: "ScroolingNews", link: "scrooling" },
+          { name: "Adds", link: "adds" },
+          { name: "E-paper", link: "epaper" },
+          { name: "Andhrapradesh", link: "/category?category=Andhrapradesh" },
+          { name: "Telangana", link: "/category?category=Telangana" },
+          { name: "Movies", link: "/category?category=Movies" },
+          { name: "Environment", link: "/category?category=Environment" },
+          { name: "Sports", link: "/category?category=Sports" },
+          { name: "Business", link: "/category?category=Business" },
+          { name: "Family", link: "/category?category=Family" },
+          { name: "Prediction", link: "/category?category=Prediction" },
+          { name: "Health", link: "/category?category=Health" },
+          { name: "Education", link: "/category?category=Education" },
+        ];
+
+        function filterSuggestions() {
+          const input = document.getElementById("searchInput").value.trim().toLowerCase();
+          const suggestionsList = document.getElementById("suggestionsList");
+          const dropdown = document.getElementById("suggestionsDropdown");
+
+          // Clear previous suggestions
+          suggestionsList.innerHTML = "";
+
+          if (input.length === 0) {
+            dropdown.style.display = "none";
+            return;
+          }
+
+          // Filter searchableLinks based on input
+          const filteredLinks = searchableLinks.filter((link) =>
+            link.name.toLowerCase().includes(input)
+          );
+
+          if (filteredLinks.length > 0) {
+            filteredLinks.forEach((link) => {
+              const li = document.createElement("li");
+              li.textContent = link.name;
+              li.onclick = () => {
+                window.location.href = link.link; // Redirect to the corresponding page
+                dropdown.style.display = "none";
+              };
+              suggestionsList.appendChild(li);
+            });
+            dropdown.style.display = "block";
+          } else {
+            dropdown.style.display = "none";
+          }
+        }
+
+        function redirectToCategory() {
+          const input = document.getElementById("searchInput").value.trim();
+          const matchingLink = searchableLinks.find(
+            (link) => link.name.toLowerCase() === input.toLowerCase()
+          );
+
+          if (matchingLink) {
+            window.location.href = matchingLink.link; // Redirect to the matching link
+          } else {
+            alert("No matching result found.");
+          }
+        }
+      </script>
+    </div>
+    
+    <header>
+      <div class="header-left">
+        <button id="nav-btn" aria-label="Open navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div id="navbar-div">
+          <ul>
+            <li><a href="/index">MainNews</a></li>
+            <li><a href="second">LatestNews</a></li>
+            <li><a href="third">FeaturedNews</a></li>
+            <li><a href="fourth">Gallery</a></li>
+            <li><a href="newupdate">News</a></li>
+            <li><a href="scrooling">TrendingNews</a></li>
+            <li><a href="adds">Adds</a></li>
+            <li><a href="epaper">Epaper</a></li>
+            <li><a href="donation">Donation</a></li>
+            <li><a href="feedback">DonationFB</a></li>
+            <li><a href="userfeedback">HomePageFB</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div id="sidebar">
+      <button id="sidebar-close" aria-label="Close navigation menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    
+      <!-- First Section -->
+      <ul>
+        <li><a href="/index">MainNews</a></li>
+        <li><a href="second">LatestNews</a></li>
+        <li><a href="third">FeaturedNews</a></li>
+      </ul>
+    
+      <!-- Second Section -->
+      <ul>
+        <li><a href="fourth">Gallery</a></li>
+        <li><a href="newupdate">News</a></li>
+        <li><a href="scrooling">TrendingNews</a></li>
+      </ul>
+    
+      <!-- Third Section -->
+      <ul>
+        <li><a href="adds">Adds</a></li>
+        <li><a href="epaper">E-paper</a></li>
+        <li><a href="donation">Donation</a></li>
+        <li><a href="feedback">DonationFB</a></li>
+        <li><a href="userfeedback">HomePageFB</a></li>
+      </ul>
+    </div>
+
+    <script>
+      const navBtn = document.getElementById("nav-btn");
+      const sidebar = document.getElementById("sidebar");
+      const sidebarClose = document.getElementById("sidebar-close");
+      const overlay = document.getElementById("overlay");
+
+      function openSidebar() {
+        sidebar.classList.add("active");
+        overlay.style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("active");
+        overlay.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      navBtn.addEventListener("click", openSidebar);
+      sidebarClose.addEventListener("click", closeSidebar);
+    </script>
+    <script
+      src="https://kit.fontawesome.com/109a493327.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

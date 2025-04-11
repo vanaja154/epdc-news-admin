@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EPDC</title>
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="update.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Internal CSS -->
+    <style>
+      /* Ensure the display container looks good */
+      #display-container {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+
+      #displayimg1, #displayimg2 {
+        max-width: 100%;
+        height: auto;
+        margin-top: 10px;
+        object-fit: contain;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .row {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div th:replace="~{header :: header}"></div>
+
+    <div class="container mt-3">
+      <div class="row">
+        <!-- Form Section -->
+        <div class="col-lg-6 col-md-12 mb-3">
+          <form
+            id="dynamicForm"
+            enctype="multipart/form-data"
+            class="p-4 bg-light rounded shadow-sm"
+          >
+            <h3 class="main-head text-left my-3">Update add Images</h3>
+
+            <label for="category" class="form-label">Select Category</label>
+            <select
+              class="form-control mb-3"
+              name="category"
+              required
+              id="category"
+            >
+              <option value="Andhrapradesh">Andhra Pradesh</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Movies">Movies</option>
+              <option value="Environment">Environment</option>
+              <option value="Sports">Sports</option>
+              <option value="Business">Business</option>
+              <option value="Family">Family</option>
+              <option value="Prediction">Prediction</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
+            </select>
+
+            <div class="mb-3">
+              <label class="form-label">Right Image 1</label>
+              <input
+                type="file"
+                class="form-control"
+                name="rightImage1"
+                accept="image/*"
+                required
+              />
+            </div>
+            <hr class="bold-line">
+            <div class="mb-3">
+              <label class="form-label">Right Image 2</label>
+              <input
+                type="file"
+                class="form-control"
+                name="rightImage2"
+                accept="image/*"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+          </form>
+        </div>
+
+        <!-- Display Section -->
+        <div class="col-lg-6 col-md-12 mb-3">
+          <div id="display-container" hidden>
+            <img id="displayimg1" alt="Right Image 1 preview" />
+            <img id="displayimg2" alt="Right Image 2 preview" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Handle form submission
+      document
+        .getElementById("dynamicForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Create a FormData object from the form
+          const formData = new FormData(event.target);
+
+          // Log the form values to the console for debugging
+          console.log("Form Data:");
+          for (const [key, value] of formData.entries()) {
+            console.log(`${key}:`, value);
+          }
+
+          // Send the form data to the server using fetch
+          fetch("/update-right-images", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              console.log("Server Response:", data);
+              alert("Images updated successfully!"); // Show a success message
+
+              // Fetch and display the updated images
+              const selectedCategory = document.getElementById("category").value;
+              fetch(`/get-right-images?category=${selectedCategory}`)
+                .then((response) => response.json())
+                .then((images) => {
+                  document.getElementById("displayimg1").src = `/uploads/${images.rightImage1}`;
+                  document.getElementById("displayimg2").src = `/uploads/${images.rightImage2}`;
+                  document.getElementById("display-container").hidden = false;
+                });
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("An error occurred while submitting the form.");
+            });
+        });
+
+      // Fetch and display images when the category changes
+      document
+        .getElementById("category")
+        .addEventListener("change", () => {
+          const selectedCategory = document.getElementById("category").value;
+          fetch(`/get-right-images?category=${selectedCategory}`)
+            .then((response) => response.json())
+            .then((images) => {
+              document.getElementById("displayimg1").src = `/uploads/${images.rightImage1}`;
+              document.getElementById("displayimg2").src = `/uploads/${images.rightImage2}`;
+              document.getElementById("display-container").hidden = false;
+            })
+            .catch((error) => {
+              console.error("Error fetching images:", error);
+              document.getElementById("display-container").hidden = true;
+            });
+        });
+    </script>
+  </body>
+</html>

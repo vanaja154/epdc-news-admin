@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPDC</title>
+    <script src="https://kit.fontawesome.com/109a493327.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <style>
+        .vertical-line {
+            border-left: 2px solid #ddd;
+            height: 582%;
+            position: absolute;
+            left: 40%;
+            top: 49px;
+        }
+        .bold-line {
+            border: none;
+            height: 2px;
+            background-color: black;
+            margin: 20px 0;
+        }
+        .row {
+            display: flex;
+        }
+        .btn-primary{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        label{
+            font-weight: bold;
+        }
+        #nav-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{header :: header}"></div>
+
+<div class="container mt-4 row">
+    <!-- Left Side: Input Forms -->
+    <div class="col-md-6">
+        <h3>Main News</h3>
+
+        <!-- Single Form for All Updates -->
+        <form id="updateForm" method="post" enctype="multipart/form-data">
+            <!-- Add Text -->
+            <label class="form-label">Add Text</label>
+            <input type="text" class="form-control" name="addText" />
+            <button type="button" onclick="submitForm('addText')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Main Image -->
+            <label class="form-label">Main Image</label>
+            <input type="file" class="form-control" name="mainImage" accept="image/*" />
+            <button type="button" onclick="submitForm('mainImage')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Main Text -->
+            <label class="form-label">Main Text</label>
+            <textarea class="form-control" name="mainText"></textarea>
+            <button type="button" onclick="submitForm('mainText')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 1 Image -->
+            <label class="form-label">Sidebar 1 Image</label>
+            <input type="file" class="form-control" name="sidebar1Image" accept="image/*" />
+            <button type="button" onclick="submitForm('sidebar1Image')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 1 Title -->
+            <label class="form-label">Sidebar 1 Title</label>
+            <input type="text" class="form-control" name="sidebar1Title" />
+            <button type="button" onclick="submitForm('sidebar1Title')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 1 Text -->
+            <label class="form-label">Sidebar 1 Text</label>
+            <textarea class="form-control" name="sidebar1Text"></textarea>
+            <button type="button" onclick="submitForm('sidebar1Text')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 2 Image -->
+            <label class="form-label">Sidebar 2 Image</label>
+            <input type="file" class="form-control" name="sidebar2Image" accept="image/*" />
+            <button type="button" onclick="submitForm('sidebar2Image')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 2 Title -->
+            <label class="form-label">Sidebar 2 Title</label>
+            <input type="text" class="form-control" name="sidebar2Title" />
+            <button type="button" onclick="submitForm('sidebar2Title')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 2 Text -->
+            <label class="form-label">Sidebar 2 Text</label>
+            <textarea class="form-control" name="sidebar2Text"></textarea>
+            <button type="button" onclick="submitForm('sidebar2Text')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 3 Image -->
+            <label class="form-label">Sidebar 3 Image</label>
+            <input type="file" class="form-control" name="sidebar3Image" accept="image/*" />
+            <button type="button" onclick="submitForm('sidebar3Image')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 3 Title -->
+            <label class="form-label">Sidebar 3 Title</label>
+            <input type="text" class="form-control" name="sidebar3Title" />
+            <button type="button" onclick="submitForm('sidebar3Title')" class="btn btn-primary">Update </button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+
+            <!-- Sidebar 3 Text -->
+            <label class="form-label">Sidebar 3 Text</label>
+            <textarea class="form-control" name="sidebar3Text"></textarea>
+            <button type="button" onclick="submitForm('sidebar3Text')" class="btn btn-primary">Update</button>
+            <!-- <hr class="bold-line"> -->
+             <div></div>
+        </form>
+    </div>
+
+    <!-- Right Side: Display Data -->
+    <div class="col-md-6">
+        <h3>Main News</h3>
+        <div>
+            <strong>Add Text:</strong>
+            <p th:text="${firstSection.addText}"></p>
+        </div>
+        <div>
+            <strong>Main Image:</strong>
+            <img th:if="${firstSection.mainImage}" th:src="@{${'/uploads/' + firstSection.mainImage}}" alt="Main Image" width="100"/>
+        </div>
+        <div>
+            <strong>Main Text:</strong>
+            <p th:text="${firstSection.mainText}"></p>
+        </div>
+        <hr/>
+
+        <div>
+            <strong>Sidebar 1 Image:</strong>
+            <img th:if="${firstSection.sidebar1Image}" th:src="@{${'/uploads/' + firstSection.sidebar1Image}}" alt="Sidebar 1 Image" width="100"/>
+        </div>
+        <div>
+            <strong>Sidebar 1 Title:</strong>
+            <p th:text="${firstSection.sidebar1Title}"></p>
+        </div>
+        <div>
+            <strong>Sidebar 1 Text:</strong>
+            <p th:text="${firstSection.sidebar1Text}"></p>
+        </div>
+        <hr/>
+
+        <div>
+            <strong>Sidebar 2 Image:</strong>
+            <img th:if="${firstSection.sidebar2Image}" th:src="@{${'/uploads/' + firstSection.sidebar2Image}}" alt="Sidebar 2 Image" width="100"/>
+        </div>
+        <div>
+            <strong>Sidebar 2 Title:</strong>
+            <p th:text="${firstSection.sidebar2Title}"></p>
+        </div>
+        <div>
+            <strong>Sidebar 2 Text:</strong>
+            <p th:text="${firstSection.sidebar2Text}"></p>
+        </div>
+        <hr/>
+
+        <div>
+            <strong>Sidebar 3 Image:</strong>
+            <img th:if="${firstSection.sidebar3Image}" th:src="@{${'/uploads/' + firstSection.sidebar3Image}}" alt="Sidebar 3 Image" width="100"/>
+        </div>
+        <div>
+            <strong>Sidebar 3 Title:</strong>
+            <p th:text="${firstSection.sidebar3Title}"></p>
+        </div>
+        <div>
+            <strong>Sidebar 3 Text:</strong>
+            <p th:text="${firstSection.sidebar3Text}"></p>
+        </div>
+        <hr/>
+    </div>
+</div>
+
+<script>
+    function submitForm(fieldName) {
+        const form = document.getElementById('updateForm');
+        const formData = new FormData(form);
+    
+        // Check if the field has a value
+        const fieldValue = formData.get(fieldName);
+        if (!fieldValue || (fieldValue instanceof File && fieldValue.size === 0)) {
+            alert('Please select a file or enter text before updating.');
+            return; // Stop execution if the field is empty
+        }
+    
+        // Only include the field being updated
+        const data = new FormData();
+        data.append(fieldName, fieldValue);
+    
+        // Submit the form data to the backend
+        fetch('/updateContent', {
+            method: 'POST',
+            body: data,
+        }).then(response => {
+            if (response.ok) {
+                alert('Updated successfully!');
+                location.reload(); // Reload the page to reflect changes
+            } else {
+                alert('Failed to update.');
+            }
+        });
+    }
+</script>
+</body>
+</html>
