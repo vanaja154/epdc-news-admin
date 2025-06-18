@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EPDC</title>
+    <link rel="icon" type="image/png" href="images/globe-removebg-preview.png" />
+
     <script src="https://kit.fontawesome.com/109a493327.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
@@ -47,77 +49,66 @@
             <label class="form-label">Left Side 1st Image</label>
             <input type="file" class="form-control" name="leftImage1" accept="image/*" />
             <button type="button" onclick="submitForm('leftImage1')" class="btn btn-primary">Update</button>
-            <!-- <hr class="bold-line"> -->
-             <div></div>
+            <div></div>
 
             <!-- Left Side 1st Text -->
             <label class="form-label">Left Side 1st Text</label>
             <textarea class="form-control" name="leftText1"></textarea>
             <button type="button" onclick="submitForm('leftText1')" class="btn btn-primary">Update</button>
-            <!-- <hr class="bold-line"> -->
             <div></div>
 
             <!-- Left Side 2nd Image -->
             <label class="form-label">Left Side 2nd Image</label>
             <input type="file" class="form-control" name="leftImage2" accept="image/*" />
-            <button type="button" onclick="submitForm('leftImage2')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line"> -->
+            <button type="button" onclick="submitForm('leftImage2')" class="btn btn-primary">Update</button>
             <div></div>
 
             <!-- Left Side 2nd Text -->
             <label class="form-label">Left Side 2nd Text</label>
             <textarea class="form-control" name="leftText2"></textarea>
             <button type="button" onclick="submitForm('leftText2')" class="btn btn-primary">Update</button>
-            <!-- <hr class="bold-line"> -->
             <div></div>
 
             <!-- Left Side 3rd Image -->
             <label class="form-label">Left Side 3rd Image</label>
             <input type="file" class="form-control" name="leftImage3" accept="image/*" />
-            <button type="button" onclick="submitForm('leftImage3')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line"> -->
+            <button type="button" onclick="submitForm('leftImage3')" class="btn btn-primary">Update</button>
             <div></div>
 
             <!-- Left Side 3rd Text -->
             <label class="form-label">Left Side 3rd Text</label>
             <textarea class="form-control" name="leftText3"></textarea>
-            <button type="button" onclick="submitForm('leftText3')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line"> -->
+            <button type="button" onclick="submitForm('leftText3')" class="btn btn-primary">Update</button>
             <div></div>
 
             <!-- Video 1 -->
             <label class="form-label">Video 1</label>
-            <input type="file" class="form-control" name="video1" accept="video/*" />
-            <button type="button" onclick="submitForm('video1')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line"> -->
+            <input type="text" class="form-control" name="video1" placeholder="Enter YouTube video URL" />
+            <button type="button" onclick="submitForm('video1')" class="btn btn-primary">Update</button>
             <div></div>
 
             <!-- Video 2 -->
             <label class="form-label">Video 2</label>
-            <input type="file" class="form-control" name="video2" accept="video/*" />
-            <button type="button" onclick="submitForm('video2')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line"> -->
+            <input type="text" class="form-control" name="video2" placeholder="Enter YouTube video URL" />
+            <button type="button" onclick="submitForm('video2')" class="btn btn-primary">Update</button>
             <div></div>
 
             <!-- Video 2 Text -->
             <label class="form-label">Video 2 Text</label>
             <textarea class="form-control" name="videoText2"></textarea>
-            <button type="button" onclick="submitForm('videoText2')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line"> -->
+            <button type="button" onclick="submitForm('videoText2')" class="btn btn-primary">Update</button>
             <div></div>
 
             <!-- Video 3 -->
             <label class="form-label">Video 3</label>
-            <input type="file" class="form-control" name="video3" accept="video/*" />
-            <button type="button" onclick="submitForm('video3')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line"> -->
+            <input type="text" class="form-control" name="video3" placeholder="Enter YouTube video URL" />
+            <button type="button" onclick="submitForm('video3')" class="btn btn-primary">Update</button>
             <div></div>
 
             <!-- Video 3 Text -->
             <label class="form-label">Video 3 Text</label>
             <textarea class="form-control" name="videoText3"></textarea>
-            <button type="button" onclick="submitForm('videoText3')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line"> -->
+            <button type="button" onclick="submitForm('videoText3')" class="btn btn-primary">Update</button>
             <div></div>
         </form>
     </div>
@@ -162,20 +153,22 @@
         <!-- Video 1 -->
         <div>
             <strong>Video 1:</strong>
-            <video th:if="${secondSection.video1}" controls width="200">
-                <source th:src="@{${'/uploads/' + secondSection.video1}}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div th:if="${secondSection.video1}">
+                <iframe th:src="'https://www.youtube.com/embed/' + ${#strings.substringAfter(secondSection.video1, 'v=')}"
+                        width="300" height="200" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
         </div>
         <hr/>
 
         <!-- Video 2 -->
         <div>
             <strong>Video 2:</strong>
-            <video th:if="${secondSection.video2}" controls width="200">
-                <source th:src="@{${'/uploads/' + secondSection.video2}}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div th:if="${secondSection.video2}">
+                <iframe th:src="'https://www.youtube.com/embed/' + ${#strings.substringAfter(secondSection.video2, 'v=')}"
+                        width="300" height="200" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
         </div>
         <div>
             <strong>Video 2 Text:</strong>
@@ -186,10 +179,11 @@
         <!-- Video 3 -->
         <div>
             <strong>Video 3:</strong>
-            <video th:if="${secondSection.video3}" controls width="200">
-                <source th:src="@{${'/uploads/' + secondSection.video3}}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div th:if="${secondSection.video3}">
+                <iframe th:src="'https://www.youtube.com/embed/' + ${#strings.substringAfter(secondSection.video3, 'v=')}"
+                        width="300" height="200" frameborder="0" allowfullscreen>
+                </iframe>
+            </div>
         </div>
         <div>
             <strong>Video 3 Text:</strong>
@@ -204,31 +198,27 @@
         const form = document.getElementById('updateForm');
         const formData = new FormData(form);
 
-        // Check if the field has a value
         const fieldValue = formData.get(fieldName);
         if (!fieldValue || (fieldValue instanceof File && fieldValue.size === 0)) {
             alert('Please select a file or enter text before updating.');
-            return; // Stop execution if the field is empty
+            return;
         }
 
-        // Only include the field being updated
         const data = new FormData();
         data.append(fieldName, fieldValue);
 
-        // Submit the form data to the backend
         fetch('/updateSecondSection', {
             method: 'POST',
             body: data,
         }).then(response => {
             if (response.ok) {
                 alert('Updated successfully!');
-                location.reload(); // Reload the page to reflect changes
+                location.reload();
             } else {
                 alert('Failed to update.');
             }
         });
     }
-
 </script>
 </body>
 </html>

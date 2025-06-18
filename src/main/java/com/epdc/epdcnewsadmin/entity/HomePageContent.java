@@ -9,9 +9,27 @@ public class HomePageContent
 
     @Id
     private String id;
+
     private String mainImage;  
     private String mainText;
+
     private String addText;
+    private String adLink; 
+    private String adImage; 
+    
+    public String getAdLink() {
+        return adLink;
+    }
+    public void setAdLink(String adLink) {
+        this.adLink = adLink;
+    }
+    public String getAdImage() {
+        return adImage;
+    }
+    public void setAdImage(String adImage) {
+        this.adImage = adImage;
+    }
+    
 
     private String sidebar1Image;
     private String sidebar1Title;

@@ -227,43 +227,49 @@ public class ContentRestController {
                 "rightImage2", news.getRightImage2() != null ? news.getRightImage2() : ""
         );
     }
-@PostMapping(value = "/update-right-images", consumes = { "multipart/form-data" })
-public Map<String, Object> updateRightImages(
-        @RequestParam("category") String category,
-        @RequestParam("rightImage1") MultipartFile rightImage1,
-        @RequestParam("rightImage2") MultipartFile rightImage2
-) {
-    // Retrieve the latest news content for the given category
-    News news = newsService.getLatestContentByCategory(category);
-
-    // If no existing content is found, create a new News object
-    if (news == null) {
-        news = new News();
-        news.setCategory(category); // Set the category for the new News object
-    }
-
-    try {
-        // Save the uploaded files and update the News object
-        if (rightImage1 != null && !rightImage1.isEmpty()) {
-            String fileName1 = saveFile(rightImage1); // Save the uploaded file and get its name
-            news.setRightImage1(fileName1); // Set the image file name
+    @PostMapping(value = "/update-right-images", consumes = { "multipart/form-data" })
+    public Map<String, Object> updateRightImages(
+            @RequestParam("category") String category,
+            @RequestParam("rightImage1") MultipartFile rightImage1,
+            @RequestParam("rightImage2") MultipartFile rightImage2,
+            @RequestParam(value = "rightImage1Link", required = false) String rightImage1Link,
+            @RequestParam(value = "rightImage2Link", required = false) String rightImage2Link
+    ) {
+        // Retrieve the latest news content for the given category
+        News news = newsService.getLatestContentByCategory(category);
+        // If no existing content is found, create a new News object
+        if (news == null) {
+            news = new News();
+            news.setCategory(category); // Set the category for the new News object
         }
-
-        if (rightImage2 != null && !rightImage2.isEmpty()) {
-            String fileName2 = saveFile(rightImage2); // Save the uploaded file and get its name
-            news.setRightImage2(fileName2); // Set the image file name
+        try {
+            // Save the uploaded files and update the News object
+            if (rightImage1 != null && !rightImage1.isEmpty()) {
+                String fileName1 = saveFile(rightImage1); // Save the uploaded file and get its name
+                news.setRightImage1(fileName1); // Set the image file name
+            }
+            if (rightImage2 != null && !rightImage2.isEmpty()) {
+                String fileName2 = saveFile(rightImage2); // Save the uploaded file and get its name
+                news.setRightImage2(fileName2); // Set the image file name
+            }
+            // Update the links
+            if (rightImage1Link != null && !rightImage1Link.isEmpty()) {
+                news.setRightImage1Link(rightImage1Link);
+            }
+            if (rightImage2Link != null && !rightImage2Link.isEmpty()) {
+                news.setRightImage2Link(rightImage2Link);
+            }
+            // Save the updated news content
+            newsService.saveContent(news);
+            // Return the updated data as a map
+            return Map.of(
+                    "rightImage1", rightImage1 != null ? rightImage1.getOriginalFilename() : null,
+                    "rightImage2", rightImage2 != null ? rightImage2.getOriginalFilename() : null,
+                    "rightImage1Link", rightImage1Link,
+                    "rightImage2Link", rightImage2Link
+            );
+        } catch (Exception e) {
+            return Map.of("error", "Error updating content: " + e.getMessage());
         }
-
-        // Save the updated news content
-        newsService.saveContent(news);
-
-        // Return the updated data as a map
-        return Map.of(
-                "rightImage1", rightImage1 != null ? rightImage1.getOriginalFilename() : null,
-                "rightImage2", rightImage2 != null ? rightImage2.getOriginalFilename() : null
-        );
-    } catch (Exception e) {
-        return Map.of("error", "Error updating content: " + e.getMessage());
     }
-}
 }

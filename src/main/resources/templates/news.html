@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EPDC</title>
+    <link rel="icon" type="image/png" href="images/globe-removebg-preview.png" />
+
     <link rel="stylesheet" href="header.css" />
     <script
       src="https://kit.fontawesome.com/109a493327.js"
@@ -28,12 +29,11 @@
         top: 49px;
       }
       .bold-line {
-    border: none;
-    height: 2px;
-    background-color: black;
-    margin: 20px 0;
-    }
-
+        border: none;
+        height: 2px;
+        background-color: black;
+        margin: 20px 0;
+      }
     </style>
   </head>
   <body>
@@ -45,7 +45,8 @@
         class="col-md-6"
         action="updateCombinedContent"
         method="post"
-        enctype="multipart/form-data">
+        enctype="multipart/form-data"
+      >
         <h3>First Section</h3>
 
         <!-- Category Dropdown -->
@@ -63,6 +64,7 @@
             <option value="Prediction">Prediction</option>
             <option value="Health">Health</option>
             <option value="Education">Education</option>
+            <option value="Blog">Blog</option>
 
             <!-- Add more categories as needed -->
           </select>
@@ -97,8 +99,7 @@
           ></textarea>
         </div>
 
-
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- Left Section 2 -->
         <div class="mb-3">
@@ -129,8 +130,8 @@
           ></textarea>
         </div>
 
-        <hr class="bold-line">
-         <!-- Left Section 3 -->
+        <hr class="bold-line" />
+        <!-- Left Section 3 -->
         <div class="mb-3">
           <label class="form-label">Left Side Image 3</label>
           <input
@@ -153,10 +154,14 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Left Side Text 3</label>
-          <textarea class="form-control" name="sidebar3Text" required></textarea>
+          <textarea
+            class="form-control"
+            name="sidebar3Text"
+            required
+          ></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
         <!-- Left Section 4 -->
         <div class="mb-3">
           <label class="form-label">Left Side Image 4</label>
@@ -169,7 +174,7 @@
           />
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
         <div class="mb-3">
           <label class="form-label">Left Side Title 4</label>
           <input
@@ -188,7 +193,7 @@
           ></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
         <!-- Left Section 5 -->
         <div class="mb-3">
           <label class="form-label">Left Side Image 5</label>
@@ -218,7 +223,7 @@
           ></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
         <!-- Left Section 6 -->
         <div class="mb-3">
           <label class="form-label">Left Side Image 6</label>
@@ -247,7 +252,7 @@
             required
           ></textarea>
         </div>
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- Left Section 7 -->
         <div class="mb-3">
@@ -278,7 +283,7 @@
           ></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- Left Section 8 -->
         <div class="mb-3">
@@ -309,7 +314,7 @@
           ></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- Left Section 9 -->
         <div class="mb-3">
@@ -339,7 +344,7 @@
             required
           ></textarea>
         </div>
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- Left Section 10 -->
         <div class="mb-3">
@@ -369,161 +374,309 @@
             required
           ></textarea>
         </div>
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- Left Section 1 to 10 (already provided) -->
 
-<!-- Left Section 11 to 20 -->
-<div class="mb-3">
-  <label class="form-label">Left Side Image 11</label>
-  <input type="file" class="form-control" name="sidebar11Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 11</label>
-  <input type="text" class="form-control" name="sidebar11Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 11</label>
-  <textarea class="form-control" name="sidebar11Text" required></textarea>
-</div>
+        <!-- Left Section 11 to 20 -->
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 11</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar11Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 11</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar11Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 11</label>
+          <textarea
+            class="form-control"
+            name="sidebar11Text"
+            required
+          ></textarea>
+        </div>
 
-<hr class="bold-line">
-<div class="mb-3">
-  <label class="form-label">Left Side Image 12</label>
-  <input type="file" class="form-control" name="sidebar12Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 12</label>
-  <input type="text" class="form-control" name="sidebar12Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 12</label>
-  <textarea class="form-control" name="sidebar12Text" required></textarea>
-</div>
+        <hr class="bold-line" />
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 12</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar12Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 12</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar12Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 12</label>
+          <textarea
+            class="form-control"
+            name="sidebar12Text"
+            required
+          ></textarea>
+        </div>
 
-<hr class="bold-line">
+        <hr class="bold-line" />
 
-<div class="mb-3">
-  <label class="form-label">Left Side Image 13</label>
-  <input type="file" class="form-control" name="sidebar13Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 13</label>
-  <input type="text" class="form-control" name="sidebar13Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 13</label>
-  <textarea class="form-control" name="sidebar13Text" required></textarea>
-</div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 13</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar13Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 13</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar13Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 13</label>
+          <textarea
+            class="form-control"
+            name="sidebar13Text"
+            required
+          ></textarea>
+        </div>
 
-<hr class="bold-line">
+        <hr class="bold-line" />
 
-<div class="mb-3">
-  <label class="form-label">Left Side Image 14</label>
-  <input type="file" class="form-control" name="sidebar14Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 14</label>
-  <input type="text" class="form-control" name="sidebar14Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 14</label>
-  <textarea class="form-control" name="sidebar14Text" required></textarea>
-</div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 14</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar14Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 14</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar14Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 14</label>
+          <textarea
+            class="form-control"
+            name="sidebar14Text"
+            required
+          ></textarea>
+        </div>
 
+        <hr class="bold-line" />
 
-<hr class="bold-line">
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 15</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar15Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 15</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar15Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 15</label>
+          <textarea
+            class="form-control"
+            name="sidebar15Text"
+            required
+          ></textarea>
+        </div>
 
-<div class="mb-3">
-  <label class="form-label">Left Side Image 15</label>
-  <input type="file" class="form-control" name="sidebar15Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 15</label>
-  <input type="text" class="form-control" name="sidebar15Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 15</label>
-  <textarea class="form-control" name="sidebar15Text" required></textarea>
-</div>
+        <hr class="bold-line" />
 
-<hr class="bold-line">
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 16</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar16Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 16</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar16Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 16</label>
+          <textarea
+            class="form-control"
+            name="sidebar16Text"
+            required
+          ></textarea>
+        </div>
 
-<div class="mb-3">
-  <label class="form-label">Left Side Image 16</label>
-  <input type="file" class="form-control" name="sidebar16Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 16</label>
-  <input type="text" class="form-control" name="sidebar16Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 16</label>
-  <textarea class="form-control" name="sidebar16Text" required></textarea>
-</div>
+        <hr class="bold-line" />
 
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 17</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar17Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 17</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar17Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 17</label>
+          <textarea
+            class="form-control"
+            name="sidebar17Text"
+            required
+          ></textarea>
+        </div>
 
-<hr class="bold-line"> 
+        <hr class="bold-line" />
 
-<div class="mb-3">
-  <label class="form-label">Left Side Image 17</label>
-  <input type="file" class="form-control" name="sidebar17Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 17</label>
-  <input type="text" class="form-control" name="sidebar17Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 17</label>
-  <textarea class="form-control" name="sidebar17Text" required></textarea>
-</div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 18</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar18Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 18</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar18Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 18</label>
+          <textarea
+            class="form-control"
+            name="sidebar18Text"
+            required
+          ></textarea>
+        </div>
 
-<hr class="bold-line">
+        <hr class="bold-line" />
 
-<div class="mb-3">
-  <label class="form-label">Left Side Image 18</label>
-  <input type="file" class="form-control" name="sidebar18Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 18</label>
-  <input type="text" class="form-control" name="sidebar18Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 18</label>
-  <textarea class="form-control" name="sidebar18Text" required></textarea>
-</div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 19</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar19Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 19</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar19Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 19</label>
+          <textarea
+            class="form-control"
+            name="sidebar19Text"
+            required
+          ></textarea>
+        </div>
 
-<hr class="bold-line">
+        <hr class="bold-line" />
 
-<div class="mb-3">
-  <label class="form-label">Left Side Image 19</label>
-  <input type="file" class="form-control" name="sidebar19Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 19</label>
-  <input type="text" class="form-control" name="sidebar19Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 19</label>
-  <textarea class="form-control" name="sidebar19Text" required></textarea>
-</div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Image 20</label>
+          <input
+            type="file"
+            class="form-control"
+            name="sidebar20Image"
+            accept="image/*"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Title 20</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sidebar20Title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Left Side Text 20</label>
+          <textarea
+            class="form-control"
+            name="sidebar20Text"
+            required
+          ></textarea>
+        </div>
 
-<hr class="bold-line">
-
-<div class="mb-3">
-  <label class="form-label">Left Side Image 20</label>
-  <input type="file" class="form-control" name="sidebar20Image" accept="image/*" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Title 20</label>
-  <input type="text" class="form-control" name="sidebar20Title" required />
-</div>
-<div class="mb-3">
-  <label class="form-label">Left Side Text 20</label>
-  <textarea class="form-control" name="sidebar20Text" required></textarea>
-</div>
-
-<hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- Center Section 1 -->
         <!-- <div class="mb-3">
@@ -611,7 +764,7 @@
             required
           />
         </div>
-        <hr class="bold-line">
+        <hr class="bold-line" />
         <div class="mb-3">
           <label class="form-label">Right Image 2</label>
           <input
@@ -624,9 +777,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
-        <hr class="bold-line">
+        <hr class="bold-line" />
       </form>
-       
+
       <!-- <div class="vertical-line"></div> -->
 
       <!-- Second Section Form -->
@@ -676,7 +829,7 @@
           <label class="form-label">1st Image Text</label>
           <textarea class="form-control" name="text1" required></textarea>
         </div>
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- 2nd Image -->
         <div class="mb-3">
@@ -698,7 +851,7 @@
           <textarea class="form-control" name="text2" required></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
         <!-- 3rd Image -->
         <div class="mb-3">
           <label class="form-label">3rd Image</label>
@@ -719,7 +872,7 @@
           <textarea class="form-control" name="text3" required></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- 4th Image -->
         <div class="mb-3">
@@ -741,7 +894,7 @@
           <textarea class="form-control" name="text4" required></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- 5th Image -->
         <div class="mb-3">
@@ -763,7 +916,7 @@
           <textarea class="form-control" name="text5" required></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
         <!-- 6th Image -->
         <div class="mb-3">
           <label class="form-label">6th Image</label>
@@ -784,7 +937,7 @@
           <textarea class="form-control" name="text6" required></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- 7th Image -->
         <div class="mb-3">
@@ -806,7 +959,7 @@
           <textarea class="form-control" name="text7" required></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
         <!-- 8th Image -->
         <div class="mb-3">
           <label class="form-label">8th Image</label>
@@ -827,7 +980,7 @@
           <textarea class="form-control" name="text8" required></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- 9th Image -->
         <div class="mb-3">
@@ -849,7 +1002,7 @@
           <textarea class="form-control" name="text9" required></textarea>
         </div>
 
-        <hr class="bold-line">
+        <hr class="bold-line" />
 
         <!-- 10th Image -->
         <div class="mb-3">
@@ -872,7 +1025,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
-        <hr class="bold-line">
+        <hr class="bold-line" />
       </form>
     </div>
 

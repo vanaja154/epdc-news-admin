@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EPDC</title>
+    <link rel="icon" type="image/png" href="images/globe-removebg-preview.png" />
+
     <script src="https://kit.fontawesome.com/109a493327.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
@@ -28,6 +30,9 @@
             height: 120px;
             /* width: 40%; */
         }
+        .image-container {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -40,109 +45,184 @@
 
         <!-- Single Form for All Updates -->
         <form id="updateForm" method="post" enctype="multipart/form-data">
-            <!-- 1st Image -->
+            <!-- 1st to 16th Image (existing) -->
             <label class="form-label">1st Image</label>
             <input type="file" class="form-control" name="image1" accept="image/*" />
             <button type="button" onclick="submitForm('image1')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
-
-            <!-- 2nd Image -->
             <label class="form-label">2nd Image</label>
             <input type="file" class="form-control" name="image2" accept="image/*" />
             <button type="button" onclick="submitForm('image2')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 3rd Image -->
             <label class="form-label">3rd Image</label>
             <input type="file" class="form-control" name="image3" accept="image/*" />
             <button type="button" onclick="submitForm('image3')" class="btn btn-primary">Update</button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 4th Image -->
             <label class="form-label">4th Image</label>
             <input type="file" class="form-control" name="image4" accept="image/*" />
             <button type="button" onclick="submitForm('image4')" class="btn btn-primary">Update</button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 5th Image -->
             <label class="form-label">5th Image</label>
             <input type="file" class="form-control" name="image5" accept="image/*" />
             <button type="button" onclick="submitForm('image5')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 6th Image -->
             <label class="form-label">6th Image</label>
             <input type="file" class="form-control" name="image6" accept="image/*" />
             <button type="button" onclick="submitForm('image6')" class="btn btn-primary">Update</button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 7th Image -->
             <label class="form-label">7th Image</label>
             <input type="file" class="form-control" name="image7" accept="image/*" />
             <button type="button" onclick="submitForm('image7')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 8th Image -->
             <label class="form-label">8th Image</label>
             <input type="file" class="form-control" name="image8" accept="image/*" />
             <button type="button" onclick="submitForm('image8')" class="btn btn-primary">Update</button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 9th Image -->
             <label class="form-label">9th Image</label>
             <input type="file" class="form-control" name="image9" accept="image/*" />
             <button type="button" onclick="submitForm('image9')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 10th Image -->
             <label class="form-label">10th Image</label>
             <input type="file" class="form-control" name="image10" accept="image/*" />
             <button type="button" onclick="submitForm('image10')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 11th Image -->
             <label class="form-label">11th Image</label>
             <input type="file" class="form-control" name="image11" accept="image/*" />
             <button type="button" onclick="submitForm('image11')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 12th Image -->
             <label class="form-label">12th Image</label>
             <input type="file" class="form-control" name="image12" accept="image/*" />
             <button type="button" onclick="submitForm('image12')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 13th Image -->
             <label class="form-label">13th Image</label>
             <input type="file" class="form-control" name="image13" accept="image/*" />
             <button type="button" onclick="submitForm('image13')" class="btn btn-primary">Update</button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 14th Image -->
             <label class="form-label">14th Image</label>
             <input type="file" class="form-control" name="image14" accept="image/*" />
             <button type="button" onclick="submitForm('image14')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
             <div></div>
 
-            <!-- 15th Image -->
             <label class="form-label">15th Image</label>
             <input type="file" class="form-control" name="image15" accept="image/*" />
             <button type="button" onclick="submitForm('image15')" class="btn btn-primary">Update </button>
-            <!-- <hr class="bold-line" /> -->
+            <div></div>
+
+            <label class="form-label">16th Image</label>
+            <input type="file" class="form-control" name="image16" accept="image/*" />
+            <button type="button" onclick="submitForm('image16')" class="btn btn-primary">Update</button>
+            <div></div>
+
+            <!-- 17th to 40th Image (new additions) -->
+            <label class="form-label">17th Image</label>
+            <input type="file" class="form-control" name="image17" accept="image/*" />
+            <button type="button" onclick="submitForm('image17')" class="btn btn-primary">Update</button>
+            <div></div>
+
+            <label class="form-label">18th Image</label>
+            <input type="file" class="form-control" name="image18" accept="image/*" />
+            <button type="button" onclick="submitForm('image18')" class="btn btn-primary">Update</button>
+            <div></div>
+
+            <label class="form-label">19th Image</label>
+            <input type="file" class="form-control" name="image19" accept="image/*" />
+            <button type="button" onclick="submitForm('image19')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">20th Image</label>
+            <input type="file" class="form-control" name="image20" accept="image/*" />
+            <button type="button" onclick="submitForm('image20')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">21st Image</label>
+            <input type="file" class="form-control" name="image21" accept="image/*" />
+            <button type="button" onclick="submitForm('image21')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">22nd Image</label>
+            <input type="file" class="form-control" name="image22" accept="image/*" />
+            <button type="button" onclick="submitForm('image22')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">23rd Image</label>
+            <input type="file" class="form-control" name="image23" accept="image/*" />
+            <button type="button" onclick="submitForm('image23')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">24th Image</label>
+            <input type="file" class="form-control" name="image24" accept="image/*" />
+            <button type="button" onclick="submitForm('image24')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">25th Image</label>
+            <input type="file" class="form-control" name="image25" accept="image/*" />
+            <button type="button" onclick="submitForm('image25')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">26th Image</label>
+            <input type="file" class="form-control" name="image26" accept="image/*" />
+            <button type="button" onclick="submitForm('image26')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">27th Image</label>
+            <input type="file" class="form-control" name="image27" accept="image/*" />
+            <button type="button" onclick="submitForm('image27')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">28th Image</label>
+            <input type="file" class="form-control" name="image28" accept="image/*" />
+            <button type="button" onclick="submitForm('image28')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">29th Image</label>
+            <input type="file" class="form-control" name="image29" accept="image/*" />
+            <button type="button" onclick="submitForm('image29')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">30th Image</label>
+            <input type="file" class="form-control" name="image30" accept="image/*" />
+            <button type="button" onclick="submitForm('image30')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">31st Image</label>
+            <input type="file" class="form-control" name="image31" accept="image/*" />
+            <button type="button" onclick="submitForm('image31')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">32nd Image</label>
+            <input type="file" class="form-control" name="image32" accept="image/*" />
+            <button type="button" onclick="submitForm('image32')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">33rd Image</label>
+            <input type="file" class="form-control" name="image33" accept="image/*" />
+            <button type="button" onclick="submitForm('image33')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">34th Image</label>
+            <input type="file" class="form-control" name="image34" accept="image/*" />
+            <button type="button" onclick="submitForm('image34')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">35th Image</label>
+            <input type="file" class="form-control" name="image35" accept="image/*" />
+            <button type="button" onclick="submitForm('image35')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">36th Image</label>
+            <input type="file" class="form-control" name="image36" accept="image/*" />
+            <button type="button" onclick="submitForm('image36')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">37th Image</label>
+            <input type="file" class="form-control" name="image37" accept="image/*" />
+            <button type="button" onclick="submitForm('image37')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">38th Image</label>
+            <input type="file" class="form-control" name="image38" accept="image/*" />
+            <button type="button" onclick="submitForm('image38')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">39th Image</label>
+            <input type="file" class="form-control" name="image39" accept="image/*" />
+            <button type="button" onclick="submitForm('image39')" class="btn btn-primary">Update</button>
+            <div></div>
+            <label class="form-label">40th Image</label>
+            <input type="file" class="form-control" name="image40" accept="image/*" />
+            <button type="button" onclick="submitForm('image40')" class="btn btn-primary">Update</button>
         </form>
     </div>
 
@@ -150,123 +230,285 @@
     <div class="col-md-6">
         <h3>Latest Gallery Pics</h3>
 
-        <!-- 1st Image -->
-        <div>
+        <!-- 1st to 16th Image (existing) -->
+        <div class="image-container">
             <strong>1st Image:</strong>
             <img th:if="${fourthSection.image1}" th:src="@{${'/uploads/' + fourthSection.image1}}" alt="1st Image" width="100" />
             <p th:unless="${fourthSection.image1}">No 1st image available</p>
         </div>
         <hr />
 
-        <!-- 2nd Image -->
-        <div>
+        <div class="image-container">
             <strong>2nd Image:</strong>
             <img th:if="${fourthSection.image2}" th:src="@{${'/uploads/' + fourthSection.image2}}" alt="2nd Image" width="100" />
             <p th:unless="${fourthSection.image2}">No 2nd image available</p>
         </div>
         <hr />
 
-        <!-- 3rd Image -->
-        <div>
+        <div class="image-container">
             <strong>3rd Image:</strong>
             <img th:if="${fourthSection.image3}" th:src="@{${'/uploads/' + fourthSection.image3}}" alt="3rd Image" width="100" />
             <p th:unless="${fourthSection.image3}">No 3rd image available</p>
         </div>
         <hr />
 
-        <!-- 4th Image -->
-        <div>
+        <div class="image-container">
             <strong>4th Image:</strong>
             <img th:if="${fourthSection.image4}" th:src="@{${'/uploads/' + fourthSection.image4}}" alt="4th Image" width="100" />
             <p th:unless="${fourthSection.image4}">No 4th image available</p>
         </div>
         <hr />
 
-        <!-- 5th Image -->
-        <div>
+        <div class="image-container">
             <strong>5th Image:</strong>
             <img th:if="${fourthSection.image5}" th:src="@{${'/uploads/' + fourthSection.image5}}" alt="5th Image" width="100" />
             <p th:unless="${fourthSection.image5}">No 5th image available</p>
         </div>
         <hr />
 
-        <!-- 6th Image -->
-        <div>
+        <div class="image-container">
             <strong>6th Image:</strong>
             <img th:if="${fourthSection.image6}" th:src="@{${'/uploads/' + fourthSection.image6}}" alt="6th Image" width="100" />
             <p th:unless="${fourthSection.image6}">No 6th image available</p>
         </div>
         <hr />
 
-        <!-- 7th Image -->
-        <div>
+        <div class="image-container">
             <strong>7th Image:</strong>
             <img th:if="${fourthSection.image7}" th:src="@{${'/uploads/' + fourthSection.image7}}" alt="7th Image" width="100" />
             <p th:unless="${fourthSection.image7}">No 7th image available</p>
         </div>
         <hr />
 
-        <!-- 8th Image -->
-        <div>
+        <div class="image-container">
             <strong>8th Image:</strong>
             <img th:if="${fourthSection.image8}" th:src="@{${'/uploads/' + fourthSection.image8}}" alt="8th Image" width="100" />
             <p th:unless="${fourthSection.image8}">No 8th image available</p>
         </div>
         <hr />
 
-        <!-- 9th Image -->
-        <div>
+        <div class="image-container">
             <strong>9th Image:</strong>
             <img th:if="${fourthSection.image9}" th:src="@{${'/uploads/' + fourthSection.image9}}" alt="9th Image" width="100" />
             <p th:unless="${fourthSection.image9}">No 9th image available</p>
         </div>
         <hr />
 
-        <!-- 10th Image -->
-        <div>
+        <div class="image-container">
             <strong>10th Image:</strong>
             <img th:if="${fourthSection.image10}" th:src="@{${'/uploads/' + fourthSection.image10}}" alt="10th Image" width="100" />
             <p th:unless="${fourthSection.image10}">No 10th image available</p>
         </div>
         <hr />
 
-        <!-- 11th Image -->
-        <div>
+        <div class="image-container">
             <strong>11th Image:</strong>
             <img th:if="${fourthSection.image11}" th:src="@{${'/uploads/' + fourthSection.image11}}" alt="11th Image" width="100" />
             <p th:unless="${fourthSection.image11}">No 11th image available</p>
         </div>
         <hr />
 
-        <!-- 12th Image -->
-        <div>
+        <div class="image-container">
             <strong>12th Image:</strong>
             <img th:if="${fourthSection.image12}" th:src="@{${'/uploads/' + fourthSection.image12}}" alt="12th Image" width="100" />
             <p th:unless="${fourthSection.image12}">No 12th image available</p>
         </div>
         <hr />
 
-        <!-- 13th Image -->
-        <div>
+        <div class="image-container">
             <strong>13th Image:</strong>
             <img th:if="${fourthSection.image13}" th:src="@{${'/uploads/' + fourthSection.image13}}" alt="13th Image" width="100" />
             <p th:unless="${fourthSection.image13}">No 13th image available</p>
         </div>
         <hr />
 
-        <!-- 14th Image -->
-        <div>
+        <div class="image-container">
             <strong>14th Image:</strong>
             <img th:if="${fourthSection.image14}" th:src="@{${'/uploads/' + fourthSection.image14}}" alt="14th Image" width="100" />
             <p th:unless="${fourthSection.image14}">No 14th image available</p>
         </div>
         <hr />
 
-        <!-- 15th Image -->
-        <div>
+        <div class="image-container">
             <strong>15th Image:</strong>
             <img th:if="${fourthSection.image15}" th:src="@{${'/uploads/' + fourthSection.image15}}" alt="15th Image" width="100" />
             <p th:unless="${fourthSection.image15}">No 15th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>16th Image:</strong>
+            <img th:if="${fourthSection.image16}" th:src="@{${'/uploads/' + fourthSection.image16}}" alt="16th Image" width="100" />
+            <p th:unless="${fourthSection.image16}">No 16th image available</p>
+        </div>
+        <hr />
+
+        <!-- 17th to 40th Image (new additions) -->
+        <div class="image-container">
+            <strong>17th Image:</strong>
+            <img th:if="${fourthSection.image17}" th:src="@{${'/uploads/' + fourthSection.image17}}" alt="17th Image" width="100" />
+            <p th:unless="${fourthSection.image17}">No 17th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>18th Image:</strong>
+            <img th:if="${fourthSection.image18}" th:src="@{${'/uploads/' + fourthSection.image18}}" alt="18th Image" width="100" />
+            <p th:unless="${fourthSection.image18}">No 18th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>19th Image:</strong>
+            <img th:if="${fourthSection.image19}" th:src="@{${'/uploads/' + fourthSection.image19}}" alt="19th Image" width="100" />
+            <p th:unless="${fourthSection.image19}">No 19th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>20th Image:</strong>
+            <img th:if="${fourthSection.image20}" th:src="@{${'/uploads/' + fourthSection.image20}}" alt="20th Image" width="100" />
+            <p th:unless="${fourthSection.image20}">No 20th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>21st Image:</strong>
+            <img th:if="${fourthSection.image21}" th:src="@{${'/uploads/' + fourthSection.image21}}" alt="21st Image" width="100" />
+            <p th:unless="${fourthSection.image21}">No 21st image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>22nd Image:</strong>
+            <img th:if="${fourthSection.image22}" th:src="@{${'/uploads/' + fourthSection.image22}}" alt="22nd Image" width="100" />
+            <p th:unless="${fourthSection.image22}">No 22nd image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>23rd Image:</strong>
+            <img th:if="${fourthSection.image23}" th:src="@{${'/uploads/' + fourthSection.image23}}" alt="23rd Image" width="100" />
+            <p th:unless="${fourthSection.image23}">No 23rd image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>24th Image:</strong>
+            <img th:if="${fourthSection.image24}" th:src="@{${'/uploads/' + fourthSection.image24}}" alt="24th Image" width="100" />
+            <p th:unless="${fourthSection.image24}">No 24th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>25th Image:</strong>
+            <img th:if="${fourthSection.image25}" th:src="@{${'/uploads/' + fourthSection.image25}}" alt="25th Image" width="100" />
+            <p th:unless="${fourthSection.image25}">No 25th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>26th Image:</strong>
+            <img th:if="${fourthSection.image26}" th:src="@{${'/uploads/' + fourthSection.image26}}" alt="26th Image" width="100" />
+            <p th:unless="${fourthSection.image26}">No 26th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>27th Image:</strong>
+            <img th:if="${fourthSection.image27}" th:src="@{${'/uploads/' + fourthSection.image27}}" alt="27th Image" width="100" />
+            <p th:unless="${fourthSection.image27}">No 27th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>28th Image:</strong>
+            <img th:if="${fourthSection.image28}" th:src="@{${'/uploads/' + fourthSection.image28}}" alt="28th Image" width="100" />
+            <p th:unless="${fourthSection.image28}">No 28th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>29th Image:</strong>
+            <img th:if="${fourthSection.image29}" th:src="@{${'/uploads/' + fourthSection.image29}}" alt="29th Image" width="100" />
+            <p th:unless="${fourthSection.image29}">No 29th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>30th Image:</strong>
+            <img th:if="${fourthSection.image30}" th:src="@{${'/uploads/' + fourthSection.image30}}" alt="30th Image" width="100" />
+            <p th:unless="${fourthSection.image30}">No 30th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>31st Image:</strong>
+            <img th:if="${fourthSection.image31}" th:src="@{${'/uploads/' + fourthSection.image31}}" alt="31st Image" width="100" />
+            <p th:unless="${fourthSection.image31}">No 31st image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>32nd Image:</strong>
+            <img th:if="${fourthSection.image32}" th:src="@{${'/uploads/' + fourthSection.image32}}" alt="32nd Image" width="100" />
+            <p th:unless="${fourthSection.image32}">No 32nd image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>33rd Image:</strong>
+            <img th:if="${fourthSection.image33}" th:src="@{${'/uploads/' + fourthSection.image33}}" alt="33rd Image" width="100" />
+            <p th:unless="${fourthSection.image33}">No 33rd image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>34th Image:</strong>
+            <img th:if="${fourthSection.image34}" th:src="@{${'/uploads/' + fourthSection.image34}}" alt="34th Image" width="100" />
+            <p th:unless="${fourthSection.image34}">No 34th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>35th Image:</strong>
+            <img th:if="${fourthSection.image35}" th:src="@{${'/uploads/' + fourthSection.image35}}" alt="35th Image" width="100" />
+            <p th:unless="${fourthSection.image35}">No 35th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>36th Image:</strong>
+            <img th:if="${fourthSection.image36}" th:src="@{${'/uploads/' + fourthSection.image36}}" alt="36th Image" width="100" />
+            <p th:unless="${fourthSection.image36}">No 36th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>37th Image:</strong>
+            <img th:if="${fourthSection.image37}" th:src="@{${'/uploads/' + fourthSection.image37}}" alt="37th Image" width="100" />
+            <p th:unless="${fourthSection.image37}">No 37th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>38th Image:</strong>
+            <img th:if="${fourthSection.image38}" th:src="@{${'/uploads/' + fourthSection.image38}}" alt="38th Image" width="100" />
+            <p th:unless="${fourthSection.image38}">No 38th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>39th Image:</strong>
+            <img th:if="${fourthSection.image39}" th:src="@{${'/uploads/' + fourthSection.image39}}" alt="39th Image" width="100" />
+            <p th:unless="${fourthSection.image39}">No 39th image available</p>
+        </div>
+        <hr />
+
+        <div class="image-container">
+            <strong>40th Image:</strong>
+            <img th:if="${fourthSection.image40}" th:src="@{${'/uploads/' + fourthSection.image40}}" alt="40th Image" width="100" />
+            <p th:unless="${fourthSection.image40}">No 40th image available</p>
         </div>
     </div>
 </div>
