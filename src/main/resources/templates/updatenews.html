@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EPDC</title>
+    <link rel="icon" type="image/png" href="images/globe-removebg-preview.png" />
+
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="update.css" />
     <link
@@ -68,6 +70,7 @@
               <option value="Prediction">Prediction</option>
               <option value="Health">Health</option>
               <option value="Education">Education</option>
+              <option value="Blog">Blog</option>
             </select>
 
             <label for="subsec" class="form-label">Select Section</label>
@@ -135,7 +138,7 @@
     <script>
       // Dynamically populate subcategories
       [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
       ].forEach((e, index) => {
         document.getElementById("subsec").innerHTML += `<option value="sidebar${
           index + 1

@@ -56,6 +56,25 @@ public class News {
     private String rightImage1;
     private String rightImage2;
 
+    public String getRightImage1Link() {
+        return rightImage1Link;
+    }
+
+    public void setRightImage1Link(String rightImage1Link) {
+        this.rightImage1Link = rightImage1Link;
+    }
+
+    public String getRightImage2Link() {
+        return rightImage2Link;
+    }
+
+    public void setRightImage2Link(String rightImage2Link) {
+        this.rightImage2Link = rightImage2Link;
+    }
+
+    private String rightImage1Link;
+    private String rightImage2Link;
+
     // Second Section Fields
     private String image1;
     private String title1;

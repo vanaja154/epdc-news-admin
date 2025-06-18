@@ -26,6 +26,7 @@ import com.epdc.epdcnewsadmin.entity.Epaper;
 import com.epdc.epdcnewsadmin.entity.Feedback;
 import com.epdc.epdcnewsadmin.entity.FourthSection;
 import com.epdc.epdcnewsadmin.entity.HomePageContent;
+import com.epdc.epdcnewsadmin.entity.Magazine;
 import com.epdc.epdcnewsadmin.entity.News;
 import com.epdc.epdcnewsadmin.entity.SecondSection;
 import com.epdc.epdcnewsadmin.entity.ThirdSection;
@@ -37,6 +38,7 @@ import com.epdc.epdcnewsadmin.service.EpaperService;
 import com.epdc.epdcnewsadmin.service.FeedbackService;
 import com.epdc.epdcnewsadmin.service.FourthSectionService;
 import com.epdc.epdcnewsadmin.service.HomePageContentService;
+import com.epdc.epdcnewsadmin.service.MagazineService;
 import com.epdc.epdcnewsadmin.service.NewsService;
 import com.epdc.epdcnewsadmin.service.SecondSectionService;
 import com.epdc.epdcnewsadmin.service.ThirdSectionService;
@@ -63,6 +65,9 @@ public class ContentController {
     private EpaperService epaperService;
 
     @Autowired
+    private MagazineService magazineService;
+
+    @Autowired
     private NewsService newsService;
 
     @Autowired
@@ -82,20 +87,18 @@ public class ContentController {
     @CrossOrigin(origins = "http://localhost:8023")
 
     @GetMapping("/index")
-    public String showHomePage(HttpSession session,Model model) {
+    public String showHomePage(HttpSession session, Model model) {
 
-         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        // Check if admin is logged in
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/";
+        }
 
         HomePageContent firstSection = contentService.getLatestContent();
         if (firstSection == null) {
-            firstSection = new HomePageContent(); // Create new content if not exists
+            firstSection = new HomePageContent();
         }
-
-        // Add attributes to the model
         model.addAttribute("contentList", contentService.getAllContent());
         model.addAttribute("firstSection", firstSection);
 
@@ -110,7 +113,7 @@ public class ContentController {
             news.setCategory(category);
         }
         model.addAttribute("news", news);
-        return "news-form"; // Thymeleaf template for the form
+        return "news-form";
     }
 
     @PostMapping("/updateContent")
@@ -127,14 +130,18 @@ public class ContentController {
             @RequestParam(value = "sidebar3Image", required = false) MultipartFile sidebar3Image,
             @RequestParam(value = "sidebar3Title", required = false) String sidebar3Title,
             @RequestParam(value = "sidebar3Text", required = false) String sidebar3Text,
-            Model model) {
 
+            // New fields for Advertisement Section
+            @RequestParam(value = "adLink", required = false) String adLink,
+            @RequestParam(value = "adImage", required = false) MultipartFile adImage,
+
+            Model model) {
         HomePageContent content = contentService.getLatestContent();
         if (content == null) {
             content = new HomePageContent();
         }
 
-        // Update fields if they are provided
+        // Update existing fields
         if (addText != null && !addText.isEmpty()) {
             content.setAddText(addText);
         }
@@ -172,10 +179,15 @@ public class ContentController {
             content.setSidebar3Text(sidebar3Text);
         }
 
-        // Save the updated content
+        if (adLink != null && !adLink.isEmpty()) {
+            content.setAdLink(adLink);
+        }
+        if (adImage != null && !adImage.isEmpty()) {
+            content.setAdImage(saveFile(adImage));
+        }
+
         contentService.saveContent(content);
 
-        // Pass updated content back to the view
         model.addAttribute("firstSection", content);
         return "index";
     }
@@ -184,10 +196,10 @@ public class ContentController {
     public String showSecondSectionPage(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/";
+        }
         model.addAttribute("secondSection", contentServiceSecondSection.getLatestContent());
 
         SecondSection secondSection = contentServiceSecondSection.getLatestContent();
@@ -202,7 +214,6 @@ public class ContentController {
         return "second";
     }
 
-    // Endpoint to update the data
     @PostMapping("/updateSecondSection")
     public String updateSecondSection(
             @RequestParam(value = "leftImage1", required = false) MultipartFile leftImage1,
@@ -211,10 +222,10 @@ public class ContentController {
             @RequestParam(value = "leftText2", required = false) String leftText2,
             @RequestParam(value = "leftImage3", required = false) MultipartFile leftImage3,
             @RequestParam(value = "leftText3", required = false) String leftText3,
-            @RequestParam(value = "video1", required = false) MultipartFile video1,
-            @RequestParam(value = "video2", required = false) MultipartFile video2,
+            @RequestParam(value = "video1", required = false) String video1,
+            @RequestParam(value = "video2", required = false) String video2,
             @RequestParam(value = "videoText2", required = false) String videoText2,
-            @RequestParam(value = "video3", required = false) MultipartFile video3,
+            @RequestParam(value = "video3", required = false) String video3,
             @RequestParam(value = "videoText3", required = false) String videoText3,
             Model model) {
 
@@ -243,25 +254,22 @@ public class ContentController {
             content.setLeftText3(leftText3);
         }
         if (video1 != null && !video1.isEmpty()) {
-            content.setVideo1(saveFile(video1));
+            content.setVideo1(video1);
         }
         if (video2 != null && !video2.isEmpty()) {
-            content.setVideo2(saveFile(video2));
+            content.setVideo2(video2);
         }
         if (videoText2 != null && !videoText2.isEmpty()) {
             content.setVideoText2(videoText2);
         }
         if (video3 != null && !video3.isEmpty()) {
-            content.setVideo3(saveFile(video3));
+            content.setVideo3(video3);
         }
         if (videoText3 != null && !videoText3.isEmpty()) {
             content.setVideoText3(videoText3);
         }
 
-        // Save the updated content
         contentServiceSecondSection.saveContent(content);
-
-        // Pass updated content back to the view
         model.addAttribute("secondSection", content);
         return "second";
     }
@@ -270,13 +278,13 @@ public class ContentController {
     public String showThirdSectionPage(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
         ThirdSection content = contentServiceThirdSection.getLatestContent();
         if (content == null) {
-            content = new ThirdSection(); // Create new content if it doesn't exist
+            content = new ThirdSection();
         }
         model.addAttribute("thirdSection", content);
         return "third";
@@ -377,10 +385,10 @@ public class ContentController {
     public String showFourthSectionPage(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
         FourthSection content = contentServiceFourthSection.getLatestContent();
         if (content == null) {
             content = new FourthSection(); // Create new content if it doesn't exist
@@ -406,6 +414,31 @@ public class ContentController {
             @RequestParam(value = "image13", required = false) MultipartFile image13,
             @RequestParam(value = "image14", required = false) MultipartFile image14,
             @RequestParam(value = "image15", required = false) MultipartFile image15,
+            @RequestParam(value = "image16", required = false) MultipartFile image16,
+            @RequestParam(value = "image17", required = false) MultipartFile image17,
+            @RequestParam(value = "image18", required = false) MultipartFile image18,
+            @RequestParam(value = "image19", required = false) MultipartFile image19,
+            @RequestParam(value = "image20", required = false) MultipartFile image20,
+            @RequestParam(value = "image21", required = false) MultipartFile image21,
+            @RequestParam(value = "image22", required = false) MultipartFile image22,
+            @RequestParam(value = "image23", required = false) MultipartFile image23,
+            @RequestParam(value = "image24", required = false) MultipartFile image24,
+            @RequestParam(value = "image25", required = false) MultipartFile image25,
+            @RequestParam(value = "image26", required = false) MultipartFile image26,
+            @RequestParam(value = "image27", required = false) MultipartFile image27,
+            @RequestParam(value = "image28", required = false) MultipartFile image28,
+            @RequestParam(value = "image29", required = false) MultipartFile image29,
+            @RequestParam(value = "image30", required = false) MultipartFile image30,
+            @RequestParam(value = "image31", required = false) MultipartFile image31,
+            @RequestParam(value = "image32", required = false) MultipartFile image32,
+            @RequestParam(value = "image33", required = false) MultipartFile image33,
+            @RequestParam(value = "image34", required = false) MultipartFile image34,
+            @RequestParam(value = "image35", required = false) MultipartFile image35,
+            @RequestParam(value = "image36", required = false) MultipartFile image36,
+            @RequestParam(value = "image37", required = false) MultipartFile image37,
+            @RequestParam(value = "image38", required = false) MultipartFile image38,
+            @RequestParam(value = "image39", required = false) MultipartFile image39,
+            @RequestParam(value = "image40", required = false) MultipartFile image40,
             Model model) {
 
         FourthSection content = contentServiceFourthSection.getLatestContent();
@@ -413,57 +446,88 @@ public class ContentController {
             content = new FourthSection();
         }
 
-        // Update fields if they are provided
-        if (image1 != null && !image1.isEmpty()) {
+        if (image1 != null && !image1.isEmpty())
             content.setImage1(saveFile(image1));
-        }
-        if (image2 != null && !image2.isEmpty()) {
+        if (image2 != null && !image2.isEmpty())
             content.setImage2(saveFile(image2));
-        }
-        if (image3 != null && !image3.isEmpty()) {
+        if (image3 != null && !image3.isEmpty())
             content.setImage3(saveFile(image3));
-        }
-        if (image4 != null && !image4.isEmpty()) {
+        if (image4 != null && !image4.isEmpty())
             content.setImage4(saveFile(image4));
-        }
-        if (image5 != null && !image5.isEmpty()) {
+        if (image5 != null && !image5.isEmpty())
             content.setImage5(saveFile(image5));
-        }
-        if (image6 != null && !image6.isEmpty()) {
+        if (image6 != null && !image6.isEmpty())
             content.setImage6(saveFile(image6));
-        }
-        if (image7 != null && !image7.isEmpty()) {
+        if (image7 != null && !image7.isEmpty())
             content.setImage7(saveFile(image7));
-        }
-        if (image8 != null && !image8.isEmpty()) {
+        if (image8 != null && !image8.isEmpty())
             content.setImage8(saveFile(image8));
-        }
-        if (image9 != null && !image9.isEmpty()) {
+        if (image9 != null && !image9.isEmpty())
             content.setImage9(saveFile(image9));
-        }
-        if (image10 != null && !image10.isEmpty()) {
+        if (image10 != null && !image10.isEmpty())
             content.setImage10(saveFile(image10));
-        }
-        if (image11 != null && !image11.isEmpty()) {
+        if (image11 != null && !image11.isEmpty())
             content.setImage11(saveFile(image11));
-        }
-        if (image12 != null && !image12.isEmpty()) {
+        if (image12 != null && !image12.isEmpty())
             content.setImage12(saveFile(image12));
-        }
-        if (image13 != null && !image13.isEmpty()) {
+        if (image13 != null && !image13.isEmpty())
             content.setImage13(saveFile(image13));
-        }
-        if (image14 != null && !image14.isEmpty()) {
+        if (image14 != null && !image14.isEmpty())
             content.setImage14(saveFile(image14));
-        }
-        if (image15 != null && !image15.isEmpty()) {
+        if (image15 != null && !image15.isEmpty())
             content.setImage15(saveFile(image15));
-        }
+        if (image16 != null && !image16.isEmpty())
+            content.setImage16(saveFile(image16));
+        if (image17 != null && !image17.isEmpty())
+            content.setImage17(saveFile(image17));
+        if (image18 != null && !image18.isEmpty())
+            content.setImage18(saveFile(image18));
+        if (image19 != null && !image19.isEmpty())
+            content.setImage19(saveFile(image19));
+        if (image20 != null && !image20.isEmpty())
+            content.setImage20(saveFile(image20));
+        if (image21 != null && !image21.isEmpty())
+            content.setImage21(saveFile(image21));
+        if (image22 != null && !image22.isEmpty())
+            content.setImage22(saveFile(image22));
+        if (image23 != null && !image23.isEmpty())
+            content.setImage23(saveFile(image23));
+        if (image24 != null && !image24.isEmpty())
+            content.setImage24(saveFile(image24));
+        if (image25 != null && !image25.isEmpty())
+            content.setImage25(saveFile(image25));
+        if (image26 != null && !image26.isEmpty())
+            content.setImage26(saveFile(image26));
+        if (image27 != null && !image27.isEmpty())
+            content.setImage27(saveFile(image27));
+        if (image28 != null && !image28.isEmpty())
+            content.setImage28(saveFile(image28));
+        if (image29 != null && !image29.isEmpty())
+            content.setImage29(saveFile(image29));
+        if (image30 != null && !image30.isEmpty())
+            content.setImage30(saveFile(image30));
+        if (image31 != null && !image31.isEmpty())
+            content.setImage31(saveFile(image31));
+        if (image32 != null && !image32.isEmpty())
+            content.setImage32(saveFile(image32));
+        if (image33 != null && !image33.isEmpty())
+            content.setImage33(saveFile(image33));
+        if (image34 != null && !image34.isEmpty())
+            content.setImage34(saveFile(image34));
+        if (image35 != null && !image35.isEmpty())
+            content.setImage35(saveFile(image35));
+        if (image36 != null && !image36.isEmpty())
+            content.setImage36(saveFile(image36));
+        if (image37 != null && !image37.isEmpty())
+            content.setImage37(saveFile(image37));
+        if (image38 != null && !image38.isEmpty())
+            content.setImage38(saveFile(image38));
+        if (image39 != null && !image39.isEmpty())
+            content.setImage39(saveFile(image39));
+        if (image40 != null && !image40.isEmpty())
+            content.setImage40(saveFile(image40));
 
-        // Save the updated content
         contentServiceFourthSection.saveContent(content);
-
-        // Pass updated content back to the view
         model.addAttribute("fourthSection", content);
         return "redirect:/fourth";
     }
@@ -572,47 +636,49 @@ public class ContentController {
 
     @PostMapping("/updateMainEditions")
     public String updateMainEditions(
-            @RequestParam(value = "edition1Image", required = false) MultipartFile edition1Image,
-            @RequestParam(value = "edition1Title", required = false) String edition1Title,
-            @RequestParam(value = "edition1PdfFile", required = false) MultipartFile edition1PdfFile,
-            @RequestParam(value = "advertisementImage", required = false) MultipartFile advertisementImage,
-            @RequestParam(value = "advertisementLink", required = false) String advertisementLink,
-            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date, // Parse date correctly
+            @RequestParam("edition1Image") MultipartFile edition1Image,
+            @RequestParam("edition1Title") String edition1Title,
+            @RequestParam("edition1PdfFile") MultipartFile edition1PdfFile,
+            @RequestParam("advertisementImage") MultipartFile advertisementImage,
+            @RequestParam("advertisementLink") String advertisementLink,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,
             Model model) {
-    
+
+        // Validate mandatory fields
+        if (edition1Image == null || edition1Image.isEmpty() ||
+                edition1Title == null || edition1Title.trim().isEmpty() ||
+                edition1PdfFile == null || edition1PdfFile.isEmpty() ||
+                advertisementImage == null || advertisementImage.isEmpty() ||
+                advertisementLink == null || advertisementLink.trim().isEmpty()) {
+
+            model.addAttribute("error", "All fields are mandatory. Please fill in all the details.");
+            return "epaper"; // Return to the same page with an error message
+        }
+
         // Fetch the existing edition by date or create a new one
         Epaper epaper = epaperService.getEditionsByDate(date).stream().findFirst().orElse(null);
         if (epaper == null) {
             epaper = new Epaper();
             epaper.setDate(date); // Set the date for the new edition
         }
-    
+
         // Update Edition 1 fields
-        if (edition1Image != null && !edition1Image.isEmpty()) {
-            epaper.setEdition1Image(saveFile(edition1Image));
-        }
-        if (edition1Title != null && !edition1Title.trim().isEmpty()) {
-            epaper.setEdition1Title(edition1Title.trim());
-        }
-        if (edition1PdfFile != null && !edition1PdfFile.isEmpty()) {
-            epaper.setEdition1PdfFile(saveFile(edition1PdfFile));
-        }
-    
+        epaper.setEdition1Image(saveFile(edition1Image));
+        epaper.setEdition1Title(edition1Title.trim());
+        epaper.setEdition1PdfFile(saveFile(edition1PdfFile));
+
         // Update Advertisement fields
-        if (advertisementImage != null && !advertisementImage.isEmpty()) {
-            epaper.setAdvertisementImage(saveFile(advertisementImage));
-        }
-        if (advertisementLink != null && !advertisementLink.trim().isEmpty()) {
-            epaper.setAdvertisementLink(advertisementLink.trim());
-        }
-    
+        epaper.setAdvertisementImage(saveFile(advertisementImage));
+        epaper.setAdvertisementLink(advertisementLink.trim());
+
         // Save the updated content
         epaperService.saveEditions(epaper);
-    
+
         // Pass updated content back to the view
         model.addAttribute("epaper", epaper);
         return "epaper";
     }
+
     private String saveFile(MultipartFile file) {
         if (file != null && !file.isEmpty()) {
             try {
@@ -634,26 +700,95 @@ public class ContentController {
     }
 
     @GetMapping("/epaper")
-public String epaper(HttpSession session, Model model, 
-                     @RequestParam(value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
-
-    Epaper epaper;
-    if (date != null) {
-        epaper = epaperService.getEditionsByDate(date).stream().findFirst().orElse(new Epaper());
-    } else {
-        epaper = epaperService.getLatestEditions();
-        if (epaper == null) {
-            epaper = new Epaper(); // Create a default object if none exists
+    public String epaper(HttpSession session, Model model,
+            @RequestParam(value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
         }
+
+        Epaper epaper;
+        if (date != null) {
+            epaper = epaperService.getEditionsByDate(date).stream().findFirst().orElse(new Epaper());
+        } else {
+            epaper = epaperService.getLatestEditions();
+            if (epaper == null) {
+                epaper = new Epaper(); // Create a default object if none exists
+            }
+        }
+
+        model.addAttribute("epaper", epaper);
+        return "epaper";
     }
 
-    model.addAttribute("epaper", epaper);
-    return "epaper";
-}
+    @GetMapping("/magazine")
+    public String magazine(HttpSession session, Model model,
+            @RequestParam(value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
+
+        com.epdc.epdcnewsadmin.entity.Magazine magazine;
+        if (date != null) {
+            magazine = magazineService.getEditionsByDate(date).stream()
+                    .findFirst().orElse(new Magazine());
+        } else {
+            magazine = magazineService.getLatestEditions();
+            if (magazine == null) {
+                magazine = new Magazine(); // Create a default object if none exists
+            }
+        }
+
+        model.addAttribute("magazine", magazine); // Corrected attribute name
+
+        return "magazine"; // Return view name
+    }
+
+    @PostMapping("/updateMainMagazine")
+    public String updateMainMagazine(
+            @RequestParam("edition1Image") MultipartFile edition1Image,
+            @RequestParam("edition1Title") String edition1Title,
+            @RequestParam("edition1PdfFile") MultipartFile edition1PdfFile,
+            @RequestParam("advertisementImage") MultipartFile advertisementImage,
+            @RequestParam("advertisementLink") String advertisementLink,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,
+            Model model) {
+
+        // Validate mandatory fields
+        if (edition1Image == null || edition1Image.isEmpty() ||
+                edition1Title == null || edition1Title.trim().isEmpty() ||
+                edition1PdfFile == null || edition1PdfFile.isEmpty() ||
+                advertisementImage == null || advertisementImage.isEmpty() ||
+                advertisementLink == null || advertisementLink.trim().isEmpty()) {
+
+            model.addAttribute("error", "All fields are mandatory. Please fill in all the details.");
+            return "magazine"; // Return to the magazine page with an error message
+        }
+
+        // Fetch the existing magazine edition by date or create a new one
+        Magazine magazine = magazineService.getEditionsByDate(date).stream().findFirst().orElse(null);
+        if (magazine == null) {
+            magazine = new Magazine();
+            magazine.setDate(date); // Set the date for the new magazine
+        }
+
+        // Update fields (reusing edition1* names for consistency)
+        magazine.setEdition1Image(saveFile(edition1Image));
+        magazine.setEdition1Title(edition1Title.trim());
+        magazine.setEdition1PdfFile(saveFile(edition1PdfFile));
+        magazine.setAdvertisementImage(saveFile(advertisementImage));
+        magazine.setAdvertisementLink(advertisementLink.trim());
+
+        // Save to DB
+        magazineService.saveEditions(magazine);
+
+        // Pass updated content back to the view
+        model.addAttribute("magazine", magazine);
+        return "magazine";
+    }
+
     @GetMapping("/newssub")
     public String showNewsFormAfterSubmiting(@RequestParam String category, Model model) {
         News news = newsService.getLatestContentByCategory(category);
@@ -670,10 +805,10 @@ public String epaper(HttpSession session, Model model,
     public String mynewUpdate(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
         return "updatenews";
     }
 
@@ -681,32 +816,32 @@ public String epaper(HttpSession session, Model model,
     public String scrooling(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
         return "updatenewsscrooling";
     }
 
-    @GetMapping("/adds")
+    @GetMapping("/ads")
     public String adds(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
-        return "adds";
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
+        return "ads";
     }
 
     @GetMapping("/donation")
     public String showDonationPage(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
         DonationSection content = donationSectionService.getLatestContent();
         if (content == null) {
             content = new DonationSection(); // Create new content if it doesn't exist
@@ -754,10 +889,10 @@ public String epaper(HttpSession session, Model model,
     public String showAdminFeedback(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
         // Fetch all feedback from the database
         List<Feedback> feedbackList = feedbackService.getAllFeedback();
 
@@ -807,15 +942,14 @@ public String epaper(HttpSession session, Model model,
         return "adminlogin";
     }
 
-
     @GetMapping("/userfeedback")
     public String showUserFeedback(HttpSession session, Model model) {
 
         // Check if admin is logged in
-    Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
-    if (isLoggedIn == null || !isLoggedIn) {
-        return "redirect:/"; // Redirect to login page if not logged in
-    }
+        Boolean isLoggedIn = (Boolean) session.getAttribute("adminLoggedIn");
+        if (isLoggedIn == null || !isLoggedIn) {
+            return "redirect:/"; // Redirect to login page if not logged in
+        }
         // Fetch all feedback from the database
         List<UserFeedBack> feedbackList = userfeedbackService.getAllFeedback();
 

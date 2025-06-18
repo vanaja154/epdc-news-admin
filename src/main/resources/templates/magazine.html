@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPDC</title>
+    <link rel="icon" type="image/png" href="images/globe-removebg-preview.png" />
+
+    <script src="https://kit.fontawesome.com/109a493327.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+    <style>
+        .bold-line {
+            border: none;
+            height: 2px;
+            background-color: black;
+            margin: 20px 0;
+            width: 45%;
+        }
+        .form-control {
+            width: 75%;
+        }
+        .btn-primary{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        label{
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .form-control {
+                width: 96%;
+            }
+        }
+        .display-area img {
+            max-width: 100px;
+            margin-top: 10px;
+        }
+        .display-area p {
+            margin-top: 5px;
+        }
+        .row {
+            display: flex;
+            align-items: flex-start;
+        }
+        .col-md-6 {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{header :: header}"></div>
+<div class="container mt-4">
+    <h3>Magazine</h3>
+    <div class="row">
+        <!-- Left Column: Input Forms -->
+        <div class="col-md-6">
+            <form id="updateForm" method="post" enctype="multipart/form-data">
+                <!-- Date Picker -->
+                <div class="mb-3">
+                    <label class="form-label">Edition Date</label>
+                    <input type="date" class="form-control" name="date" required />
+                </div>
+
+                <!-- Edition 1 -->
+                <div class="mb-3">
+                    <label class="form-label">Edition 1 Image</label>
+                    <input type="file" class="form-control" name="edition1Image" accept="image/*"  required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Edition 1 Title</label>
+                    <input type="text" class="form-control" name="edition1Title" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Edition 1 PDF File</label>
+                    <input type="file" class="form-control" name="edition1PdfFile" accept="application/pdf" required />
+                </div>
+
+                <!-- Advertisement Section -->
+                <div class="mb-3">
+                    <label class="form-label">Advertisement Image</label>
+                    <input type="file" class="form-control" name="advertisementImage" accept="image/*" required/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Advertisement Link</label>
+                    <input type="text" class="form-control" name="advertisementLink" required />
+                </div>
+
+                <!-- Submit Button -->
+                <button type="button" onclick="submitAllFields()" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <!-- Right Column: Display Data -->
+        <!-- <div class="col-md-6 display-area">
+            <!-- Edition 1 
+            <div>
+                <strong>Edition 1 Image:</strong>
+                <img th:if="${epaper.edition1Image}" th:src="@{${'/uploads/' + epaper.edition1Image}}" alt="Edition 1 Image" />
+            </div>
+            <div>
+                <strong>Edition 1 Title:</strong>
+                <p th:text="${epaper.edition1Title}"></p>
+            </div>
+            <div>
+                <strong>Edition 1 PDF:</strong>
+                <a th:href="@{${'/uploads/' + epaper.edition1PdfFile}}">Download PDF</a>
+            </div>
+            <hr/>
+            <!-- Advertisement Section 
+            <div>
+                <strong>Advertisement Image:</strong>
+                <img th:if="${epaper.advertisementImage}" th:src="@{${'/uploads/' + epaper.advertisementImage}}" alt="Advertisement Image" />
+            </div>
+            <div>
+                <strong>Advertisement Link:</strong>
+                <a th:href="${epaper.advertisementLink}" target="_blank">Visit Link</a>
+            </div>
+        </div> -->
+    </div>
+</div>
+<script>
+    function submitAllFields() {
+    const form = document.getElementById('updateForm');
+    const formData = new FormData(form);
+
+    // Check if all required fields are filled
+    const dateField = formData.get('date');
+    const edition1Image = formData.get('edition1Image');
+    const edition1Title = formData.get('edition1Title');
+    const edition1PdfFile = formData.get('edition1PdfFile');
+    const advertisementImage = formData.get('advertisementImage');
+    const advertisementLink = formData.get('advertisementLink');
+
+    if (!dateField || !edition1Image || !edition1Title || !edition1PdfFile || !advertisementImage || !advertisementLink) {
+        alert('All fields are mandatory. Please fill in all the details.');
+        return;
+    }
+
+    // Send the entire form data in one request
+    fetch('/updateMainMagazine', {
+        method: 'POST',
+        body: formData,
+    }).then(response => {
+        if (response.ok) {
+            alert('All fields updated successfully!');
+            location.reload(); // Reload the page to reflect changes
+        } else {
+            alert('Failed to update.');
+        }
+    });
+}
+</script>
+</body>
+</html>

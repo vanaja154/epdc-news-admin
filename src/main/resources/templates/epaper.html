@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EPDC</title>
+    <link rel="icon" type="image/png" href="images/globe-removebg-preview.png" />
+
     <script src="https://kit.fontawesome.com/109a493327.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
@@ -90,8 +92,8 @@
         </div>
 
         <!-- Right Column: Display Data -->
-        <div class="col-md-6 display-area">
-            <!-- Edition 1 -->
+        <!-- <div class="col-md-6 display-area">
+            <!-- Edition 1 
             <div>
                 <strong>Edition 1 Image:</strong>
                 <img th:if="${epaper.edition1Image}" th:src="@{${'/uploads/' + epaper.edition1Image}}" alt="Edition 1 Image" />
@@ -105,7 +107,7 @@
                 <a th:href="@{${'/uploads/' + epaper.edition1PdfFile}}">Download PDF</a>
             </div>
             <hr/>
-            <!-- Advertisement Section -->
+            <!-- Advertisement Section 
             <div>
                 <strong>Advertisement Image:</strong>
                 <img th:if="${epaper.advertisementImage}" th:src="@{${'/uploads/' + epaper.advertisementImage}}" alt="Advertisement Image" />
@@ -114,34 +116,40 @@
                 <strong>Advertisement Link:</strong>
                 <a th:href="${epaper.advertisementLink}" target="_blank">Visit Link</a>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <script>
     function submitAllFields() {
-        const form = document.getElementById('updateForm');
-        const formData = new FormData(form);
+    const form = document.getElementById('updateForm');
+    const formData = new FormData(form);
 
-        // Validate the date field
-        const dateField = formData.get('date');
-        if (!dateField) {
-            alert('Please select a date before submitting.');
-            return;
-        }
+    // Check if all required fields are filled
+    const dateField = formData.get('date');
+    const edition1Image = formData.get('edition1Image');
+    const edition1Title = formData.get('edition1Title');
+    const edition1PdfFile = formData.get('edition1PdfFile');
+    const advertisementImage = formData.get('advertisementImage');
+    const advertisementLink = formData.get('advertisementLink');
 
-        // Send the entire form data in one request
-        fetch('/updateMainEditions', {
-            method: 'POST',
-            body: formData,
-        }).then(response => {
-            if (response.ok) {
-                alert('All fields updated successfully!');
-                location.reload(); // Reload the page to reflect changes
-            } else {
-                alert('Failed to update.');
-            }
-        });
+    if (!dateField || !edition1Image || !edition1Title || !edition1PdfFile || !advertisementImage || !advertisementLink) {
+        alert('All fields are mandatory. Please fill in all the details.');
+        return;
     }
+
+    // Send the entire form data in one request
+    fetch('/updateMainEditions', {
+        method: 'POST',
+        body: formData,
+    }).then(response => {
+        if (response.ok) {
+            alert('All fields updated successfully!');
+            location.reload(); // Reload the page to reflect changes
+        } else {
+            alert('Failed to update.');
+        }
+    });
+}
 </script>
 </body>
 </html>
